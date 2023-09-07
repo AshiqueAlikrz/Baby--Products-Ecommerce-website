@@ -1,0 +1,49 @@
+/* AddProducts.css */
+
+/* Styles for the user information container */
+.user-info-container {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for the user icon */
+  .user-icon {
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  /* Styles for user information */
+  .user-info {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for order information */
+  .order-info {
+    font-size: 16px;
+  }
+  
+  /* Styles for individual order items */
+  .order-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  /* Styles for the total price section */
+  .total-price {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Styles for the green total price */
+  .total-price h1 {
+    font-size: 28px;
+    color: green;
+  }
+  

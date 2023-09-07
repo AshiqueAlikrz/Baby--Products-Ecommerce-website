@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background-color: #333;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 24px; 
+  font-weight: bold; 
+  letter-spacing: 2px; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+
+  width: 25%;
+  background-color: #333;
+  color: #fff;
+  height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  background-color: #ede4e4;
+  border-radius: 15px;
+  border-style: groove;
+}
+.dashboard-text {
+  font-size: 30px;
+  font-family: "Varela Round", sans-serif;
+}
+.section-text {
+  font-size: 17px;
+  font-family: "Varela Round", sans-serif;
+}
+
+.section-text:hover {
+  background-color: #ede4e4;
+  color: #000000;
+  border: none;
+}
+.admin-text {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.button-logout {
+  height: 30px;
+  font-family: "Varela Round", sans-serif;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgb(102, 107, 111);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  height: 40px;
+  margin-top: 10PX;
+  transition: background-color 0.3s, color 0.3s;
+}
+.button-logout:hover {
+  background-color: rgb(152, 47, 47);
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,274 @@
+.form-class {
+  border: 3px ridge rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.logo-image {
+  width: 50%;
+  height: auto;
+}
+.Nav-color {
+  background-color: blanchedalmond;
+  color: black;
+}
+.baby-image {
+  height: 100px;
+  width: 100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.create-account-text {
+  color: red;
+}
+.RegisterAccount {
+  display: inline-block;
+}
+
+.cart-notification {
+  margin-top: 20px;
+}
+.nav-text {
+  font-family: "Varela Round", sans-serif;
+  color: rgb(0, 0, 0);
+  margin-top: 25px;
+  font-size: 18px;
+}
+body {
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fafa-icon {
+  color: grey;
+  height: 20px;
+  width: 20px;
+  margin-top: 22px;
+}
+.img-src {
+  height: 100px;
+  width: 100px;
+}
+.nav-src {
+  width: 100px;
+}
+
+.baby-icon {
+  height: 100px;
+  width: 100px;
+  margin-bottom: 18px;
+}
+@media (max-width: 991px) {
+  .baby-icon,
+  .fafa-div {
+    display: none;
+  }
+}
+.card-product {
+  display: flex;
+
+  flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+  .card-product {
+    float: left;
+  }
+}
+.card-size {
+  height: 250px;
+  width: 300px;
+  margin: 50px;
+}
+.text-black {
+  margin: 20px;
+}
+
+.arrival-head {
+  margin-top: 30px;
+  font-family: "Russo One", sans-serif;
+}
+
+.text-black:hover img {
+  transform: scale(1.075);
+}
+.text-black img {
+  transition: transform 0.2s linear;
+}
+
+.text-black {
+  height: auto;
+  overflow: hidden;
+}
+
+.review-div {
+  position: relative;
+  height: 600px;
+  width: 90%;
+  display: inline-block;
+  background-image: url("https://www.trepcapitalgroup.com/wp-content/uploads/2017/09/light-bg-1024x559.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.review-image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 400px;
+  width: auto;
+  margin-top: 100px;
+  float: left;
+}
+
+.review-para {
+  flex-wrap: nowrap;
+  margin-top: 70px;
+  font-family: "Josefin Sans", sans-serif;
+  color: black;
+  padding: 40px;
+}
+
+.review-div2 {
+  position: relative;
+  height: 600px;
+  width: 90%;
+  display: inline-block;
+  background-image: url("http://cdn.wallpapersafari.com/30/71/RVF1Xa.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.review-image2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 400px;
+  width: auto;
+  margin-top: 100px;
+  float: right;
+
+}
+.review-para2 {
+  flex-wrap: nowrap;
+  margin-top: 70px;
+  font-family: "Josefin Sans", sans-serif;
+  color: rgb(255, 255, 255);
+  padding: 40px;
+}
+
+.five-star2 {
+  height: 100px;
+}
+
+@media (max-width: 889px) {
+  .review-image,
+  .review-image2 {
+    display: none;
+  }
+  .review-div,
+  .review-div2 {
+    height: 500px;
+  }
+}
+@media (max-width: 407px) {
+  .review-para,
+  .review-para2 {
+    font-size: 20px;
+  }
+  .review-div,
+  .review-div2 {
+    height: 630px;
+  }
+  .five-star,
+  .five-star2 {
+    width: 200px;
+  }
+}
+
+.five-star {
+  height: 100px;
+}
+
+.search-bar {
+  margin-top: 2px;
+  height: 40px;
+  width: 400px;
+  margin-right: 6px;
+}
+
+.fafa-div {
+  display: flex;
+  flex-direction: row;
+}
+.Dropdown {
+  margin-top: 28px;
+}
+
+.Dropdown-text {
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+  font-family: "Varela Round", sans-serif;
+}
+.nav-first {
+  width: auto;
+  height: 25px;
+  background-color: rgb(255, 255, 0);
+}
+
+.carousel-text {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+
+@media (max-width: 453px) {
+  .carousel-text {
+    font-size: 8px;
+    margin-top: 5px;
+    color: aliceblue;
+  }
+  .nav-first {
+    background-color: rgb(24, 21, 64);
+  }
+}
+
+/* @media (min-width: 769px) {
+  .baby-icon {
+    display: block ;
+}
+} */
+
+.container-text{
+  margin-bottom: -30px;
+}
+.dumbell-img{
+  /* margin-top: 90px; */
+  text-align: center;
+
+}
+
+
+.dumbell-head{
+  font-family: "Varela Round", sans-serif;
+ color: black;
+ margin: 20px;
+
+}
+
+.product-image{
+  margin-top: 100px;
+}
+.logout-button{
+  font-size:10px;
+  margin-top: 2px;
+  width: 145px;
+  height: 40px;
+}
