@@ -9,7 +9,6 @@ import {
   MDBCarouselItem,
   MDBCardBody,
   MDBCardImage,
-  MDBCardTitle,
   MDBCard,
   MDBCol,
   MDBRow,
@@ -248,7 +247,7 @@ const Homepage = () => {
                   </p>
                   <p>
                     <MDBIcon icon="envelope" className="me-3" />
-                    info@example.com
+                    babycare@example.com
                   </p>
                   <p>
                     <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
@@ -265,7 +264,6 @@ const Homepage = () => {
             className="text-center p-4"
             style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
           >
-            © 2021 Copyright:
             <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
               BabyCare.com
             </a>

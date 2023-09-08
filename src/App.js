@@ -13,7 +13,6 @@ import { dummyData } from "./DummyUser";
 import { userDataContext } from "./userDataContext";
 import { productsDeatils } from "./LoginAndRegisterAccount/Products";
 import KidsCloths from "./LoginAndRegisterAccount/KidsCloths";
-import MostPopular from "./LoginAndRegisterAccount/MostPopular";
 import Babycare from "./LoginAndRegisterAccount/Babycare";
 import Footwear from "./LoginAndRegisterAccount/footwear";
 import Admin from "./LoginAndRegisterAccount/Admin/admin";
@@ -39,7 +38,6 @@ function App() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registered, setRegistered] = useState(false);
   const [Profile, setProfile] = useState(dummyData);
-  const [BuyData, setBuyData] = useState("");
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -102,7 +100,6 @@ function App() {
           <Route path="/footer" element={<Footer />} />
           <Route path="/kidsclothing" element={<KidsCloths />} />
           <Route path="/productdetails/:id" element={<ViewProduct />} />
-          <Route path="/mostpopularitems/:id" element={<ViewProduct />} />
           <Route path="/babycare" element={<Babycare />} />
           <Route path="/footwear" element={<Footwear />} />
           <Route path="/admin" element={<Admin />} />

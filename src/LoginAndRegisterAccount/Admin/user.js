@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const navigate = useNavigate();
-  const { Profile, cartItems } = useContext(userDataContext);
+  const { Profile, } = useContext(userDataContext);
 
   const filteredProfile = Profile.filter((user) => user.role !== "admin");
 

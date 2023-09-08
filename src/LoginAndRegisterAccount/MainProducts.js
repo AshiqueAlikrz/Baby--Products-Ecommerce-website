@@ -8,7 +8,6 @@ import {
     MDBCol,
     MDBRow,
   } from "mdb-react-ui-kit";
-import { productsDeatils } from './Products';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { userDataContext } from "../userDataContext";

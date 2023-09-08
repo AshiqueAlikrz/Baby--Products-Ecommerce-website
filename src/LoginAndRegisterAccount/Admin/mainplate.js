@@ -1,7 +1,6 @@
 import React from "react";
-import Content from "./Content";
 import "./Admin.css";
-import { MDBBtn, MDBIcon } from "mdb-react-ui-kit";
+import {  MDBIcon } from "mdb-react-ui-kit";
 import User from "./user";
 import AdminProducts from "./adminProducts";
 import AddProdcuts from "./addProdcuts";

@@ -22,9 +22,8 @@ const AddCart = () => {
   const {
     cartItems,
     setCartItems,
-    setTotalPrice,
+    
     isAuthenticated,
-    loginEmail,
     Profile,
     setProfile,
     RegistrationData

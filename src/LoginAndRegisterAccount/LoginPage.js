@@ -15,7 +15,7 @@ import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
 
 const LoginPage = () => {
-  const { Profile, LoginData, setLoginData ,RegistrationData,setIsAuthenticated} = useContext(userDataContext);
+  const {  LoginData, setLoginData ,RegistrationData,setIsAuthenticated} = useContext(userDataContext);
 
   const navigate = useNavigate();
 
@@ -41,10 +41,7 @@ const LoginPage = () => {
     }
   };
   
-    const newData={
-
-    }
-
+ 
   return (
     <>
       <Navbar />
