@@ -209,6 +209,7 @@ body {
 }
 .Dropdown {
   margin-top: 28px;
+  text-align: left;
 }
 
 .Dropdown-text {

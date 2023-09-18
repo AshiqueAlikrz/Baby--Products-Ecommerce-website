@@ -85,7 +85,10 @@ const Navbar = () => {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink href="" className="nav-text ">
-                  Shop
+                <Link to="/" className="text-black">
+                    Shop
+                  </Link>
+                  
                 </MDBNavbarLink>
               </MDBNavbarItem>
 
@@ -93,7 +96,7 @@ const Navbar = () => {
                 <MDBDropdownToggle
                   color="light"
                   className="Dropdown-text"
-                  style={{ textTransform: "capitalize" }}
+                  style={{ textTransform: "capitalize" } }
                 >
                   Category
                 </MDBDropdownToggle>
@@ -112,7 +115,7 @@ const Navbar = () => {
 
               <MDBNavbarItem>
                 <MDBNavbarLink href="" className="nav-text">
-                  <Link to="/aboutus" className="text-black ms-0  ">
+                  <Link to="/aboutus" className="text-black">
                     {" "}
                     About{" "}
                   </Link>
@@ -120,7 +123,7 @@ const Navbar = () => {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink href="" className="nav-text">
-                  <Link to="/ContactUs" className="text-black ms-0">
+                  <Link to="/ContactUs" className="text-black ">
                     Contact
                   </Link>
                 </MDBNavbarLink>

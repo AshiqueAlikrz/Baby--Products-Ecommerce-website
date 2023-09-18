@@ -55,7 +55,6 @@ const ViewProduct = () => {
             className="buy-button"
             onClick={() => {
               if (isAuthenticated) {
-              
                 navigate("/payment");
               } else {
                 alert("sign up your account");
