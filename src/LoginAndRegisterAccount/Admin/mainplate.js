@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const location = useLocation();
+  console.log(location);
   const adminproducts = location.pathname.endsWith("/adminproducts");
   const user = location.pathname.endsWith("/user");
   const addproducts = location.pathname.endsWith("/addproducts");

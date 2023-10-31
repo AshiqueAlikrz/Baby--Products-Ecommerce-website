@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+// import React, { useContext, useState } from "react";
 import "./Style.css";
+import axios from "axios";
 import {
   MDBBtn,
   MDBContainer,
@@ -10,50 +11,61 @@ import {
 import BabyImage from "./attachment_87322237-removebg-preview.png";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar";
-import { userDataContext } from "../userDataContext";
-import { useNavigate } from "react-router-dom";
+// import { userDataContext } from "../userDataContext";
+// import { useNavigate } from "react-router-dom";
+
 
 const RegisterAccount = () => {
-  const {
-    Profile,
-    setProfile,
-    RegistrationData,
-    setRegistrationData,
-    isAuthenticated,
-  } = useContext(userDataContext);
+  // const { Profile, setRegistrationData, isAuthenticated } =
+  //   useContext(userDataContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setRegistrationData({ ...RegistrationData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (RegistrationData.email === "admin@gmail.com") {
+    const FullName = e.target.name.value.trim();
+    const Email = e.target.email.value.trim();
+    const Password = e.target.password.value.trim();
+
+    if (Email === "admin@gmail.com") {
       alert("Email already used");
-    } else if (RegistrationData.password !== RegistrationData.confirmPassword) {
-      alert("Passwords do not match");
     } else {
 
-      const UserID = Profile.length;
-      const FullName = RegistrationData.name;
-      const Email = RegistrationData.email;
-      const Password = RegistrationData.password;
+      const payload = {
+        name: FullName,
+        email: Email,
+        password: Password,
+      };
 
-      setProfile([
-        ...Profile,
-        { id: UserID, name: FullName, email: Email, password: Password, orders: [] },
-      ]);
+      // setProfile([
+      //   ...Profile,
+      //   {
+      //     id: UserID,
+      //     name: FullName,
+      //     email: Email,
+      //     password: Password,
+      //     orders: [],
+      //   },
+      // ]);
 
-      alert("Registration successful!");
-      navigate("/loginpage");
+      console.log(payload);
+      try {
+        const response = await axios.post(
+          "http://localhost:8000/api/user/register",
+          payload
+        );
+        console.log(response);
+        // console.log(" registration successful");
+        alert("registered");
+      } catch (err) {
+        console.log(err);
+        alert("Error: " + err.message);
+      }
+
+      // alert("Registration successful!");
+      // navigate("/loginpage");
     }
   };
-  
-  
 
   return (
     <div>
@@ -74,8 +86,6 @@ const RegisterAccount = () => {
                   id="form1"
                   type="text"
                   name="name"
-                  value={RegistrationData.name}
-                  onChange={handleChange}
                   required
                 />
                 <MDBInput
@@ -83,10 +93,8 @@ const RegisterAccount = () => {
                   label="E-mail"
                   id="form2"
                   type="email"
-                  required
                   name="email"
-                  value={RegistrationData.email}
-                  onChange={handleChange}
+                  required
                 />
                 <MDBInput
                   wrapperClass="mb-4"
@@ -94,8 +102,6 @@ const RegisterAccount = () => {
                   id="form3"
                   name="password"
                   type="password"
-                  value={RegistrationData.password}
-                  onChange={handleChange}
                 />
                 <MDBInput
                   wrapperClass="mb-4"
@@ -103,8 +109,6 @@ const RegisterAccount = () => {
                   id="form3"
                   type="password"
                   name="confirmPassword"
-                  value={RegistrationData.confirmPassword}
-                  onChange={handleChange}
                 />
 
                 <div className="text-center pt-1 pb-1">

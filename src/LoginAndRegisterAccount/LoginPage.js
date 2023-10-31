@@ -13,9 +13,11 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
+import axios from "axios";
 
 const LoginPage = () => {
-  const {  LoginData, setLoginData ,RegistrationData,setIsAuthenticated} = useContext(userDataContext);
+  const { LoginData, setLoginData, RegistrationData, setIsAuthenticated } =
+    useContext(userDataContext);
 
   const navigate = useNavigate();
 
@@ -23,25 +25,33 @@ const LoginPage = () => {
     navigate("/registeraccount");
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData({ ...LoginData, [name]: value });
-  };  
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    if (LoginData.email === RegistrationData.email && LoginData.password === RegistrationData.password) {
-      setIsAuthenticated(true)
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
+
+    const payload = { email, password };
+
+    try {
+      const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
+      alert("User login successful");
+      setIsAuthenticated(true);
       navigate("/");
-    } else if (LoginData.email === "admin@gmail.com" && LoginData.password === "123") {
-      navigate("/user");
-    } else {
-      alert('Invalid Email or Password');
+    } catch (errorUser) {
+      console.error(errorUser);
+      
+      try {
+        const responseAdmin = await axios.post("http://localhost:8000/api/admin/login", payload);
+        alert("Admin logging successful");
+        navigate("/user");
+      } catch (errorAdmin) {
+        console.error(errorAdmin);
+        alert("Invalid Email or Password");
+      }
     }
+    
   };
-  
- 
+
   return (
     <>
       <Navbar />
@@ -60,8 +70,6 @@ const LoginPage = () => {
                   id="form1"
                   type="email"
                   name="email"
-                  value={LoginData.email}
-                  onChange={handleChange}
                 />
                 <MDBInput
                   wrapperClass=" mb-4"
@@ -69,8 +77,6 @@ const LoginPage = () => {
                   id="form2"
                   type="password"
                   name="password"
-                  value={LoginData.password}
-                  onChange={handleChange}
                 />
                 <div className="text-center pt-1 mb-5 pb-1">
                   <MDBBtn
@@ -79,7 +85,7 @@ const LoginPage = () => {
                   >
                     Login
                   </MDBBtn>
-                
+
                   <a className="text-muted" href="#!">
                     Forgot password?
                   </a>

@@ -17,11 +17,11 @@ import Babycare from "./LoginAndRegisterAccount/Babycare";
 import Footwear from "./LoginAndRegisterAccount/footwear";
 import Admin from "./LoginAndRegisterAccount/Admin/admin";
 import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
-import User from "./LoginAndRegisterAccount/Admin/user";
-import AdminProducts from "./LoginAndRegisterAccount/Admin/adminProducts";
-import AddProdcuts from "./LoginAndRegisterAccount/Admin/addProdcuts";
-import EditPage from "./LoginAndRegisterAccount/Admin/EditPage";
-import Info from "./LoginAndRegisterAccount/Admin/Info";
+// import User from "./LoginAndRegisterAccount/Admin/user";
+// import AdminProducts from "./LoginAndRegisterAccount/Admin/adminProducts";
+// import AddProdcuts from "./LoginAndRegisterAccount/Admin/addProdcuts";
+// import EditPage from "./LoginAndRegisterAccount/Admin/EditPage";
+// import Info from "./LoginAndRegisterAccount/Admin/Info";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -82,13 +82,11 @@ function App() {
           setConfirmPassword,
           registered,
           setRegistered,
-          Profile,
-          setProfile,
           RegistrationData,
           setRegistrationData,
           LoginData,
           setLoginData,
-        }}
+        }}  
       >
         <Routes>
           <Route path="/" element={<Homepage />} />
