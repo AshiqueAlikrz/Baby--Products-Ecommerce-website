@@ -23,6 +23,9 @@ import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
 // import EditPage from "./LoginAndRegisterAccount/Admin/EditPage";
 // import Info from "./LoginAndRegisterAccount/Admin/Info";
 
+
+
+
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);

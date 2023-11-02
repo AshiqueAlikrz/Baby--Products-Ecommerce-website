@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Style.css";
-import { useContext } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -16,9 +15,7 @@ import { userDataContext } from "../userDataContext";
 import axios from "axios";
 
 const LoginPage = () => {
-  const { LoginData, setLoginData, RegistrationData, setIsAuthenticated } =
-    useContext(userDataContext);
-
+  const { setIsAuthenticated } = useContext(userDataContext);
   const navigate = useNavigate();
 
   const toCreateAccount = () => {
@@ -32,40 +29,47 @@ const LoginPage = () => {
 
     const payload = { email, password };
 
-    try {
-      const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
-      alert("User login successful");
-      setIsAuthenticated(true);
-      navigate("/");
-    } catch (errorUser) {
-      console.error(errorUser);
-      
+    if (payload) {
       try {
-        const responseAdmin = await axios.post("http://localhost:8000/api/admin/login", payload);
-        alert("Admin logging successful");
-        navigate("/user");
-      } catch (errorAdmin) {
-        console.error(errorAdmin);
-        alert("Invalid Email or Password");
+        const responseUser = await axios.post(
+          "http://localhost:8000/api/user/login",
+          payload
+        );
+        alert("User login successful");
+        setIsAuthenticated(true);
+        navigate("/");
+      } catch (errorUser) {
+        try {
+          const responseAdmin = await axios.post(
+            "http://localhost:8000/api/admin/login",
+            payload
+          );
+          alert("Admin logging successful");
+          navigate("/user");
+        } catch (errorAdmin) {
+          console.error(errorAdmin);
+          alert("Invalid Email or Password");
+        }
       }
+    } else {
+      alert("Invalid email or password");
     }
-    
   };
 
   return (
     <>
       <Navbar />
-      <MDBContainer className="my-5  gradient-form d-flex justify-content-center align-items-center flex-column vh-100">
+      <MDBContainer className="my-5 gradient-form d-flex justify-content-center align-items-center flex-column vh-100">
         <form onSubmit={handleSubmit}>
           <MDBRow>
-            <MDBCol col="6" className="mb-5 ">
-              <div className="d-flex flex-column ">
+            <MDBCol col="6" className="mb-5">
+              <div className="d-flex flex-column">
                 <div className="text-center">
                   <img src={BabyImage} style={{ width: "185px" }} alt="logo" />
                 </div>
                 <p>Please login to your account</p>
                 <MDBInput
-                  wrapperClass="mb-4 "
+                  wrapperClass="mb-4"
                   label="Email address"
                   id="form1"
                   type="email"

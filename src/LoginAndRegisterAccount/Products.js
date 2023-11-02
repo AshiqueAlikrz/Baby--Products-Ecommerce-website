@@ -332,9 +332,4 @@ export const productsDeatils = [
     brand: "Mothercare",
     qty:1
   },
-  
-  
-  
-  
-  
 ];

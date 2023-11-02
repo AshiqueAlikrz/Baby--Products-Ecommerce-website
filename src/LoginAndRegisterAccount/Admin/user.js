@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./user.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { userDataContext } from "../../userDataContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const User = () => {
   const navigate = useNavigate();
-  const { Profile, } = useContext(userDataContext);
+  const { Profile } = useContext(userDataContext);
 
-  const filteredProfile = Profile.filter((user) => user.role !== "admin");
+  const [users, setusers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = await axios.get( "http://localhost:8000/api/admin/users");
+        setusers(userData.data.data);
+        return userData;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -25,11 +39,11 @@ const User = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredProfile.map((user) => (
+            {users.map((user) => (
               <React.Fragment key={user.id}>
                 <tr key={user.id}>
                   <>
-                    <td>{user.id }</td>
+                    <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{user.orders.length}</td>
