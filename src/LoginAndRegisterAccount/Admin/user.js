@@ -7,7 +7,6 @@ import axios from "axios";
 
 const User = () => {
   const navigate = useNavigate();
-  const { Profile } = useContext(userDataContext);
 
   const [users, setusers] = useState([]);
 
@@ -43,7 +42,7 @@ const User = () => {
               <React.Fragment key={user.id}>
                 <tr key={user.id}>
                   <>
-                    <td>{user.id}</td>
+                    <td>{user._id}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
                     <td>{user.orders.length}</td>

@@ -17,6 +17,8 @@ import Babycare from "./LoginAndRegisterAccount/Babycare";
 import Footwear from "./LoginAndRegisterAccount/footwear";
 import Admin from "./LoginAndRegisterAccount/Admin/admin";
 import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
+import { useEffect } from "react";
+import axios from "axios";
 // import User from "./LoginAndRegisterAccount/Admin/user";
 // import AdminProducts from "./LoginAndRegisterAccount/Admin/adminProducts";
 // import AddProdcuts from "./LoginAndRegisterAccount/Admin/addProdcuts";
@@ -41,6 +43,7 @@ function App() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registered, setRegistered] = useState(false);
   const [Profile, setProfile] = useState(dummyData);
+  const [products, setProducts] = useState([]);
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -51,6 +54,20 @@ function App() {
     email: "",
     password: "",
   });
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productData = await axios.get("http://localhost:8000/api/admin/products");
+        setProducts(productData.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
 
   return (
     <div className="App">
@@ -89,6 +106,8 @@ function App() {
           setRegistrationData,
           LoginData,
           setLoginData,
+          products,
+          setProducts
         }}  
       >
         <Routes>
