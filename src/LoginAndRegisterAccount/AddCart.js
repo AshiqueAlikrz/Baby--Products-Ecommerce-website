@@ -17,17 +17,15 @@ import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const AddCart = () => {
-  const {
-    cartItems,
-    setCartItems,
-    
-    isAuthenticated,
-    Profile,
-    setProfile,
-    RegistrationData
-  } = useContext(userDataContext);
+  const { cartItems, setCartItems, isAuthenticated, Profile, setProfile, RegistrationData, users,setusers } =
+    useContext(userDataContext);
+
+  // const AddedItems = users.data.user;
+  // console.log("AddedItems", AddedItems);
+
 
   const handleIncreaseQuantity = (recvId) => {
     const cartPlus = cartItems.map((data) => {
@@ -63,116 +61,54 @@ const AddCart = () => {
 
   const BuyClick = (e) => {
     e.preventDefault();
-  
-    if (isAuthenticated) {
-      if (cartItems.length!==0) {
-        const newOrder = cartItems.map((data, index) => ({
-          orderId: index,
-          items: data.name,
-          quantity: data.qty,
-          price: data.price,
-          totalprice: data.qty * data.price,
-        }));
-
-        const updatedProfileArray = Profile.map((user) => {
-          if (user.name === RegistrationData.name) {
-            return {
-              ...user,
-              orders: [...user.orders, ...newOrder],
-            };
-          }
-          return user;
-        });
-
-        setProfile(updatedProfileArray);
-        alert("Order placed");
-        setCartItems([])
-      } 
-    }else {
-      alert("User not found");
-    }
+    console.log(users.data.user.cart.length);
   };
-  
+
   return (
     <div>
       <Navbar />
 
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5 h-100">
-          
           <MDBRow className="justify-content-center align-items-center h-100">
             <MDBCol size="12">
-              <MDBCard
-                className="card-registration card-registration-2"
-                style={{ borderRadius: "15px" }}
-              >
+              <MDBCard className="card-registration card-registration-2" style={{ borderRadius: "15px" }}>
                 <MDBCardBody className="p-0">
                   <MDBRow className="g-0">
                     <MDBCol lg="8">
                       <div className="p-5">
                         <div className="d-flex justify-content-between align-items-center mb-5">
-                          <MDBTypography
-                            tag="h1"
-                            className="fw-bold mb-0 text-black"
-                          >
+                          <MDBTypography tag="h1" className="fw-bold mb-0 text-black">
                             Shopping Cart
                           </MDBTypography>
                           <MDBTypography className="mb-0 text-muted">
-                            {cartItems.length} items
+                            {users.data.user.cart.length}
+                               items
                           </MDBTypography>
                         </div>
 
                         <hr className="my-4" />
-                        {cartItems.map((items, index) => (
-                          <MDBRow
-                            className="mb-4 d-flex justify-content-between align-items-center"
-                            key={index}
-                          >
+                        {users.data.data.use.map((items, index) => (
+                          <MDBRow className="mb-4 d-flex justify-content-between align-items-center" key={index}>
                             <MDBCol md="2" lg="2" xl="2">
-                              <MDBCardImage
-                                src={items.src}
-                                fluid
-                                className="rounded-3"
-                                alt="Cotton T-shirt"
-                              />
+                              <MDBCardImage src={items.src} fluid className="rounded-3" alt="Cotton T-shirt" />
                             </MDBCol>
                             <MDBCol md="3" lg="3" xl="3">
                               <MDBTypography tag="h6" className="text-muted">
-                                {items.name}
+                                {items.title}
                               </MDBTypography>
-                              <MDBTypography
-                                tag="h6"
-                                className="text-black mb-0"
-                              >
+                              <MDBTypography tag="h6" className="text-black mb-0">
                                 {items.category}
                               </MDBTypography>
                             </MDBCol>
-                            <MDBCol
-                              md="3"
-                              lg="3"
-                              xl="3"
-                              className="d-flex align-items-center"
-                            >
-                              <MDBBtn
-                                color="link"
-                                className="px-2"
-                                onClick={() => handleDecreaseQuantity(items.id)}
-                              >
+                            <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
+                              <MDBBtn color="link" className="px-2" onClick={() => handleDecreaseQuantity(items.id)}>
                                 <MDBIcon fas icon="minus" />
                               </MDBBtn>
 
-                              <MDBInput
-                                type="number"
-                                min="1"
-                                value={items.qty}
-                                size="sm"
-                              />
+                              <MDBInput type="number" min="1" value={items.qty} size="sm" />
 
-                              <MDBBtn
-                                color="link"
-                                className="px-2"
-                                onClick={() => handleIncreaseQuantity(items.id)}
-                              >
+                              <MDBBtn color="link" className="px-2" onClick={() => handleIncreaseQuantity(items.id)}>
                                 <MDBIcon fas icon="plus" />
                               </MDBBtn>
                             </MDBCol>
@@ -182,11 +118,7 @@ const AddCart = () => {
                               </MDBTypography>
                             </MDBCol>
                             <MDBCol md="1" lg="1" xl="1" className="text-end">
-                              <MDBIcon
-                                fas
-                                icon="times"
-                                onClick={() => handleRemove(items.id)}
-                              />
+                              <MDBIcon fas icon="times" onClick={() => handleRemove(items.id)} />
                             </MDBCol>
                             <hr className="my-4" />
                           </MDBRow>
@@ -194,11 +126,7 @@ const AddCart = () => {
 
                         <div className="pt-5">
                           <MDBTypography tag="h6" className="mb-0">
-                            <MDBCardText
-                              tag="a"
-                              href="#!"
-                              className="text-body"
-                            >
+                            <MDBCardText tag="a" href="#!" className="text-body">
                               <MDBIcon fas icon="long-arrow-alt-left me-2" />
                               <Link to="/" className="text-black">
                                 {" "}
@@ -211,10 +139,7 @@ const AddCart = () => {
                     </MDBCol>
                     <MDBCol lg="4" className="bg-dark">
                       <div className="p-5 bg-dark">
-                        <MDBTypography
-                          tag="h3"
-                          className="fw-bold mb-5 mt-2 pt-1 text-white"
-                        >
+                        <MDBTypography tag="h3" className="fw-bold mb-5 mt-2 pt-1 text-white">
                           Summary
                         </MDBTypography>
 
@@ -223,10 +148,7 @@ const AddCart = () => {
                         <div className="d-flex justify-content-between mb-4"></div>
 
                         <div className="d-flex justify-content-between mb-5">
-                          <MDBTypography
-                            tag="h5"
-                            className="text-uppercase text-white"
-                          >
+                          <MDBTypography tag="h5" className="text-uppercase text-white">
                             Total price
                           </MDBTypography>
                           <MDBTypography tag="h5" className="text-white">
@@ -234,12 +156,7 @@ const AddCart = () => {
                           </MDBTypography>
                         </div>
 
-                        <MDBBtn
-                          color="warning"
-                          block
-                          size="lg"
-                          onClick={BuyClick}
-                        >
+                        <MDBBtn color="warning" block size="lg" onClick={BuyClick}>
                           BUY
                         </MDBBtn>
                       </div>
@@ -252,6 +169,7 @@ const AddCart = () => {
         </MDBContainer>
       </section>
       <Footer />
+      <button onClick={BuyClick}>click</button>
     </div>
   );
 };

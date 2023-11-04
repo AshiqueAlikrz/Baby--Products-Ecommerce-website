@@ -25,12 +25,9 @@ import axios from "axios";
 // import EditPage from "./LoginAndRegisterAccount/Admin/EditPage";
 // import Info from "./LoginAndRegisterAccount/Admin/Info";
 
-
-
-
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [search, setSearch] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -44,6 +41,8 @@ function App() {
   const [registered, setRegistered] = useState(false);
   const [Profile, setProfile] = useState(dummyData);
   const [products, setProducts] = useState([]);
+  const [users, setusers] = useState([]);
+  const [LoginUser, setLoginUser] = useState([]);
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -54,7 +53,6 @@ function App() {
     email: "",
     password: "",
   });
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,7 +65,6 @@ function App() {
     };
     fetchData();
   }, []);
-
 
   return (
     <div className="App">
@@ -107,8 +104,12 @@ function App() {
           LoginData,
           setLoginData,
           products,
-          setProducts
-        }}  
+          setProducts,
+          users,
+          setusers,
+          LoginUser,
+          setLoginUser,
+        }}
       >
         <Routes>
           <Route path="/" element={<Homepage />} />

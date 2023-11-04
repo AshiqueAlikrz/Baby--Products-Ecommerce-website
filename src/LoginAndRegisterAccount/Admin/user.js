@@ -8,14 +8,14 @@ import axios from "axios";
 const User = () => {
   const navigate = useNavigate();
 
-  const [users, setusers] = useState([]);
+  const {users, setusers}=useContext(userDataContext);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userData = await axios.get( "http://localhost:8000/api/admin/users");
         setusers(userData.data.data);
-        return userData;
       } catch (error) {
         console.error("Error fetching data:", error);
       }

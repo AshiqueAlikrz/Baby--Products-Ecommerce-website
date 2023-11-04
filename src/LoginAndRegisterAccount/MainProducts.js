@@ -15,9 +15,9 @@ import { userDataContext } from "../userDataContext";
 
 
 const MainProducts = () => {
-  const {Delete}=useContext(userDataContext)
+  const {products}=useContext(userDataContext)
 
-  const Slice=Delete.slice(0,8);
+  const MainProducts=products.slice(0,8);
     const navigate =useNavigate()
 
     
@@ -28,8 +28,8 @@ const MainProducts = () => {
           <MDBRow className="m-3">
             <h1 className="arrival-head">Our Products</h1>
 
-            {Slice.map(value=>(
-            <MDBCol  xl="3" lg="4" md="4" sm="6" key={value.id} onClick={()=>navigate(`/productdetails/${value.id}`)}>
+            {MainProducts.map(value=>(
+            <MDBCol  xl="3" lg="4" md="4" sm="6" key={value._id} onClick={()=>navigate(`/productdetails/${value._id}`)}>
               <MDBCard className="text-black ">
                 <MDBCardImage
                   src={value.src}
@@ -39,7 +39,7 @@ const MainProducts = () => {
                 <MDBCardBody>
                   <div className="text-center">
                     <MDBCardTitle>
-                      {value.name}
+                      {value.title}
                     </MDBCardTitle>
                     <p className="text-muted mb-4"></p>
                   </div>

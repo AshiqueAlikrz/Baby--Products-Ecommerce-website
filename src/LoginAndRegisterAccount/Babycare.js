@@ -14,9 +14,9 @@ import { userDataContext } from "../userDataContext";
 
 
 const Babycare = () => {
-    const {Delete}=useContext(userDataContext)
+    const {products}=useContext(userDataContext)
 
-    const clothProducts = Delete.filter((value) => value.category === 'babycare');
+    const clothProducts = products.filter((value) => value.category === 'babycare');
     const navigate = useNavigate();
 
 
@@ -28,12 +28,12 @@ const Babycare = () => {
             <h1 className="arrival-head">Baby Care</h1>
             
             {clothProducts.map((value) => (
-              <MDBCol xl="3" lg="4" md="4" sm="6" key={value.id} onClick={()=>navigate(`/productdetails/${value.id}`)}>
+              <MDBCol xl="3" lg="4" md="4" sm="6" key={value._id} onClick={()=>navigate(`/productdetails/${value._id}`)}>
                 <MDBCard className="text-black">
                   <MDBCardImage src={value.src} position="top" alt={value.name} />
                   <MDBCardBody>
                     <div className="text-center">
-                      <MDBCardTitle>{value.name}</MDBCardTitle>
+                      <MDBCardTitle>{value.title}</MDBCardTitle>
                       <p className="text-muted mb-4"></p>
                     </div>
 

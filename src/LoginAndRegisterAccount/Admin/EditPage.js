@@ -10,37 +10,18 @@ const EditPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // console.log(id);
-
-  // const handleEdit = () => {
-  //   const response = axios.put(`http://localhost/api/admin/products/${parsedProductId}`);
-  //   console.log(response);
-  //   const existingProduct = products.find((product) => product._id === parsedProductId);
-  //   setProducts(existingProduct);
-  // };
-
-  // const existingProduct = products.find(
-  //   (product) => product.id === parsedProductId
-  // );
-
-  // const initialFormData = {
-  //   src: "",
-  //   category: "",
-  //   name: "",
-  //   description: "",
-  //   price: "",
-  // };
-
-  // const [formData, setFormData] = useState(initialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
+  const [formData, setFormData] = useState({
+    src: "",
+    category: "",
+    title: "",
+    description: "",
+    price: "",
+    status: "popular",
+    qty: "",
+    brand: "",
+  });
 
   const editvalues = {};
 
@@ -52,25 +33,47 @@ const EditPage = () => {
     const category = e.target.category.value;
     const description = e.target.description.value;
     const price = e.target.price.value;
+    const brand = e.target.brand.value;
+    const qty = e.target.qty.value;
+    const status = e.target.status.value;
 
-    const payload = { id , title, src, category, description, price };
-    // console.log(payload);
+    setFormData({
+      ...formData,
+      src,
+      category,
+      title,
+      description,
+      price,
+      brand,
+      qty,
+      status,
+    });
 
-    const handleEdit = async() => {
+    const payload = { id, title, src, category, description, price, brand, qty, status };
+
+    setFormData({
+      ...formData,
+      src,
+    });
+
+    console.log("formData: ", payload.src);
+
+    const handleEdit = async () => {
       try {
-        const response = await axios.put(`http://localhost/api/admin/products`, payload);
-        const editProduct=response.data;
-        console.log("pro",editProduct);
+        const response = await axios.put("http://localhost:8000/api/admin/products", payload);
+        // const editProduct=response.data;
+        console.log("pro", response);
         // console.log(response);
-        const existingProduct = editProduct.find((product) => product._id === id);
-        console.log(existingProduct);
-        setProducts(existingProduct);
+        // const existingProduct = editProduct.find((product) => product._id === id);
+        // console.log(existingProduct);
+        // setProducts(existingProduct);
       } catch (err) {
         console.log(err);
       }
     };
-    
+
     handleEdit();
+
     // console.log(" submitted:", products);
 
     // const updatedDelete = products.map((product) =>
@@ -91,7 +94,12 @@ const EditPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="image">Image URL:</label>
-            <input type="text" id="image" name="src" required />
+            <input
+              type="text"
+              id="image"
+              name="src"
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="category">Category:</label>
@@ -113,6 +121,21 @@ const EditPage = () => {
           <div className="form-group">
             <label htmlFor="price">Price:</label>
             <input type="number" id="price" name="price" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="status">Status:</label>
+            <select id="status" name="status" required>
+              <option value="popular">popular</option>
+              <option value="nopopular">not popular</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="qty">Quantity:</label>
+            <input type="number" id="qty" name="qty" required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" required />
           </div>
           <button type="submit" className="save-button">
             Save

@@ -14,8 +14,8 @@ import {
 
 
 const Footwear = () => {
-    const {productsDeatils}=useContext(userDataContext)
-    const FootFiltered=productsDeatils.filter((item)=>item.category==="footwear")
+    const {products}=useContext(userDataContext)
+    const FootFiltered=products.filter((item)=>item.category==="footwear")
     const navigate = useNavigate();
   return (
     <div>
@@ -25,12 +25,12 @@ const Footwear = () => {
             
             <h1 className="arrival-head">Footwear and Accessories</h1>
             {FootFiltered.map((item) => (
-              <MDBCol xl="3" lg="4" md="4" sm="6" key={item.id} onClick={()=>navigate(`/productdetails/${item.id}`)}>
+              <MDBCol xl="3" lg="4" md="4" sm="6" key={item._id} onClick={()=>navigate(`/productdetails/${item._id}`)}>
                 <MDBCard className="text-black">
                   <MDBCardImage src={item.src} position="top" alt={item.name} />
                   <MDBCardBody>
                     <div className="text-center">
-                      <MDBCardTitle>{item.name}</MDBCardTitle>
+                      <MDBCardTitle>{item.title}</MDBCardTitle>
                       <p className="text-muted mb-4"></p>
                     </div>
 

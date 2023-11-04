@@ -17,28 +17,17 @@ import {
 import MainProducts from "./MainProducts";
 import MostPopular from "./MostPopular";
 
-
 const Homepage = () => {
   return (
     <>
       <div className="nav-first">
-        <Carousel
-          interval={2000}
-          prevIcon={null}
-          nextIcon={null}
-          indicators={false}
-        >
+        <Carousel interval={2000} prevIcon={null} nextIcon={null} indicators={false}>
           <Carousel.Item>
-            <p className="carousel-text">
-              ⛔ Visit Our Clearance Sale Store for Rock Bottom Prices *T&C
-              Apply ⛔
-            </p>
+            <p className="carousel-text">⛔ Visit Our Clearance Sale Store for Rock Bottom Prices *T&C Apply ⛔</p>
           </Carousel.Item>
 
           <Carousel.Item>
-            <p className="carousel-text">
-              🍁 CHECKOUT OUR LATEST AUTUMN WINTER COLLECTION 🍁
-            </p>
+            <p className="carousel-text">🍁 CHECKOUT OUR LATEST AUTUMN WINTER COLLECTION 🍁</p>
           </Carousel.Item>
 
           <Carousel.Item>
@@ -49,7 +38,7 @@ const Homepage = () => {
       <Navbar />
 
       <section id="Home">
-        <MDBCarousel showControls >
+        <MDBCarousel showControls>
           <MDBCarouselItem
             className="w-100 d-block"
             itemId={1}
@@ -72,7 +61,7 @@ const Homepage = () => {
       </section>
 
       <MainProducts />
-      
+
       <section>
         <h1 className="arrival-head">Why They Loving Us</h1>
         <div className="review-div">
@@ -81,10 +70,9 @@ const Homepage = () => {
             src="http://www.pngall.com/wp-content/uploads/2018/03/Child-PNG-Image.png"
           ></img>
           <h3 className="review-para">
-            " This is the very good quality products. I hd ordered running shoes
-            they delivered low quality. But in the picture look like very good
-            item, I used with in one month shoes broke. customer service and
-            delivery is good. It's ok "
+            " This is the very good quality products. I hd ordered running shoes they delivered low quality. But in the
+            picture look like very good item, I used with in one month shoes broke. customer service and delivery is
+            good. It's ok "
           </h3>
           <img
             className="five-star"
@@ -98,9 +86,8 @@ const Homepage = () => {
             src="http://www.sproutpeds.com/wp-content/uploads/revslider/fable/slider_slide2_img1.png"
           ></img>
           <h3 className="review-para2">
-            " Very good products for buying baby products and i got better
-            quality items from this.Good customer service and higly discound by
-            ordering od combo items "
+            " Very good products for buying baby products and i got better quality items from this.Good customer service
+            and higly discound by ordering od combo items "
           </h3>
           <img
             className="five-star2"
@@ -108,9 +95,8 @@ const Homepage = () => {
           ></img>
         </div>
       </section>
-      <MostPopular/>  
 
-     
+      <MostPopular />
 
       <MDBCard className="mb-4 -lg-0">
         <MDBCardBody>
@@ -145,10 +131,7 @@ const Homepage = () => {
       </MDBCard>
 
       <section>
-        <MDBFooter
-          bgColor="light"
-          className="text-center text-lg-start text-muted"
-        >
+        <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
           <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <div className="me-5 d-none d-lg-block">
               <span>Get connected with us on social networks:</span>
@@ -185,9 +168,8 @@ const Homepage = () => {
                     LOVED BABY PRODUCTS
                   </h6>
                   <p>
-                    Here you can use rows and columns to organize your footer
-                    content.dolor sit amet, consectetur adipisicing
-                    elit.
+                    Here you can use rows and columns to organize your footer content.dolor sit amet, consectetur
+                    adipisicing elit.
                   </p>
                 </MDBCol>
 
@@ -260,10 +242,7 @@ const Homepage = () => {
             </MDBContainer>
           </section>
 
-          <div
-            className="text-center p-4"
-            style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
-          >
+          <div className="text-center p-4" style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
             <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
               BabyCare.com
             </a>

@@ -50,74 +50,66 @@ const AdminProducts = () => {
   return (
     <div>
       <div className="scroll-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Image</th>
-              <th>Name</th>
-              <label htmlFor="mySelect">Category : </label>
-              <select
-                id="mySelect"
-                value={selectedCategory}
-                onChange={handleCategoryChange}
-                style={{
-                  backgroundColor: "#1f1b1b",
-                  color: "white",
-                }}
-              >
-                <option value="All">All Products</option>{" "}
-                <option value="babycare">Babycare</option>
-                <option value="footwear">Footwear & Accessories</option>
-                <option value="kidscloths">Kids clothing</option>
-              </select>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((value) => (
-              <tr key={value.id}>
-                <td>{value._id}</td>
-                <td>
-                  <img
-                    src={value.src}
-                    alt="Product 1"
-                    style={{ width: "100px", height: "100px" }}
-                  />
-                </td>
-                <td>{value.title}</td>
-                <td>{value.category}</td>
-                <td>{value.description.slice(0, 30)}...</td>
-                <td>{value.price}</td>
-                <td>
-                  <button
-                    className="edit-button"
-                    onClick={() => navigate(`/editpage/${value._id}`)}
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="delete-button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleDelete(value._id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Quantity</th>
+        <th>Brand</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredProducts.map((value) => (
+        <tr key={value._id}>
+          <td>{value._id}</td>
+          <td>
+            <img
+              src={value.src}
+              alt="Product 1"
+              style={{ width: "100px", height: "100px" }}
+            />
+          </td>
+          <td>{value.title}</td>
+          <td>{value.category}</td>
+          <td>{value.description.slice(0, 30)}...</td>
+          <td>{value.price}</td>
+          <td>{value.status}</td> 
+          <td>{value.qty}</td> 
+          <td>{value.brand}</td> 
+          <td>
+            <button
+              className="edit-button"
+              onClick={() => navigate(`/editpage/${value._id}`)}
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              className="delete-button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete(value._id);
+              }}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
     </div>
   );
 };
-
 export default AdminProducts;

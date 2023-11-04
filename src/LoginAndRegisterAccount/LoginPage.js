@@ -9,7 +9,7 @@ import { userDataContext } from "../userDataContext";
 import axios from "axios";
 
 const LoginPage = () => {
-  const { setIsAuthenticated } = useContext(userDataContext);
+  const { setIsAuthenticated ,LoginUser, setLoginUser} = useContext(userDataContext);
   const navigate = useNavigate();
 
   const toCreateAccount = () => {
@@ -26,6 +26,7 @@ const LoginPage = () => {
     if (payload) {
       try {
         const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
+        setLoginUser(payload)
         alert("User login successful");
         setIsAuthenticated(true);
         navigate("/");
