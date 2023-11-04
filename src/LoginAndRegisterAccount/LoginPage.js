@@ -22,11 +22,13 @@ const LoginPage = () => {
     const password = e.target.password.value.trim();
 
     const payload = { email, password };
+    console.log(payload);
 
     if (payload) {
       try {
         const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
-        setLoginUser(payload)
+        // console.log(responseUser);
+        setLoginUser(responseUser)
         alert("User login successful");
         setIsAuthenticated(true);
         navigate("/");

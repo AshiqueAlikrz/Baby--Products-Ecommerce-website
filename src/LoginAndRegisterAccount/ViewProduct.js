@@ -2,15 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import "./viewproducts.css";
 import { MDBIcon } from "mdb-react-ui-kit";
 import Navbar from "./navbar";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Style.css";
 import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const ViewProduct = () => {
-  const {  cartItems, setCartItems, isAuthenticated,LoginUser,setusers,users } = useContext(userDataContext);
+  const { cartItems, setCartItems, isAuthenticated, LoginUser, setusers, users } = useContext(userDataContext);
   const { id } = useParams();
   // console.log("idssss:",id);
   const navigate = useNavigate();
@@ -34,19 +34,21 @@ const ViewProduct = () => {
 
   const addToCart = async (newItems) => {
     try {
-      const productPayload = newItems;
-      const userPayload = LoginUser.email;
-      const response = await axios.post(`http://localhost:8000/api/user/${userPayload}/cart/${productPayload}`);
-      const userDetails = response.data;
-      setusers(response);
+      const userPayload = LoginUser.data.data.id;
+      const productPayload = { id: newItems };
+      // console.log("userPayload:", userPayload);
+      // console.log("productPayload:", productPayload);
+
+      const response = await axios.post(`http://localhost:8000/api/user/${userPayload}/cart`, productPayload);
+      const updatedData = response.data;
+      setusers(updatedData);
+      // console.log("users", users);
       addToCart();
-      console.log("users",users);
-      alert("cart added successfully")
+      alert("cart added successfully");
     } catch (error) {
       console.error("Error adding item to cart:", error);
     }
   };
-  
 
   return (
     <div>
