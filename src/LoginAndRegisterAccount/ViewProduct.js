@@ -10,9 +10,8 @@ import { userDataContext } from "../userDataContext";
 import { useNavigate } from "react-router-dom";
 
 const ViewProduct = () => {
-  const { cartItems, setCartItems, isAuthenticated, LoginUser, setusers, users } = useContext(userDataContext);
+  const {isAuthenticated, LoginUser, setusers, token } = useContext(userDataContext);
   const { id } = useParams();
-  // console.log("idssss:",id);
   const navigate = useNavigate();
 
   const [Product, setProduct] = useState([]);
@@ -20,7 +19,8 @@ const ViewProduct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/user/products/${id}`);
+        const tokenVerify = {headers: { Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,},};
+        const response = await axios.get(`http://localhost:8000/api/user/products/${id}`,tokenVerify);
         const viewProduct = response.data.data;
         setProduct(viewProduct);
       } catch (error) {
@@ -32,18 +32,19 @@ const ViewProduct = () => {
 
   // console.log(Product);
 
-  const addToCart = async (newItems) => {
+  const addToCart = async (newItems,e) => {
+    e.preventDefault();
     try {
-      const userPayload = LoginUser.data.data.id;
+      const userPayload = LoginUser;
       const productPayload = { id: newItems };
       // console.log("userPayload:", userPayload);
       // console.log("productPayload:", productPayload);
 
       const response = await axios.post(`http://localhost:8000/api/user/${userPayload}/cart`, productPayload);
       const updatedData = response.data;
+      console.log("updatedData",updatedData);
       setusers(updatedData);
       // console.log("users", users);
-      addToCart();
       alert("cart added successfully");
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -63,9 +64,9 @@ const ViewProduct = () => {
           <p className="product-price">₹ {Product.price}</p>
           <button
             className="add-to-cart"
-            onClick={() => {
+            onClick={(e) => {
               if (isAuthenticated) {
-                addToCart(Product._id) || alert("item added successfully");
+                addToCart(Product._id,e) || alert("item added successfully");
               } else {
                 alert("sign up your account");
               }

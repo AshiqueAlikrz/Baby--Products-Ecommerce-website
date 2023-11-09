@@ -15,6 +15,7 @@ const User = () => {
     const fetchData = async () => {
       try {
         const userData = await axios.get( "http://localhost:8000/api/admin/users");
+        // console.log("userData", userData);
         setusers(userData.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -38,9 +39,9 @@ const User = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <React.Fragment key={user.id}>
-                <tr key={user.id}>
+            {users.map((user,index) => (
+              <React.Fragment key={index}>
+                <tr key={user._id}>
                   <>
                     <td>{user._id}</td>
                     <td>{user.name}</td>

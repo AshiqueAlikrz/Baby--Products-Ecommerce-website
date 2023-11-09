@@ -9,7 +9,7 @@ import { userDataContext } from "../userDataContext";
 import axios from "axios";
 
 const LoginPage = () => {
-  const { setIsAuthenticated ,LoginUser, setLoginUser} = useContext(userDataContext);
+  const { setIsAuthenticated, LoginUser, setLoginUser, token, setToken } = useContext(userDataContext);
   const navigate = useNavigate();
 
   const toCreateAccount = () => {
@@ -27,14 +27,13 @@ const LoginPage = () => {
     if (payload) {
       try {
         const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
-        // console.log(responseUser);
-        setLoginUser(responseUser)
-        alert("User login successful");
+        const userId = responseUser.data.data;
+        setLoginUser(userId);
         setIsAuthenticated(true);
         navigate("/");
       } catch (errorUser) {
         try {
-          const responseAdmin = await axios.post("http://localhost:8000/api/admin/login", payload);
+          await axios.post("http://localhost:8000/api/admin/login", payload);
           alert("Admin logging successful");
           navigate("/user");
         } catch (errorAdmin) {
@@ -45,6 +44,10 @@ const LoginPage = () => {
     } else {
       alert("Invalid email or password");
     }
+
+    // const verifyToken = localStorage.getItem("jwt_token");
+    // setToken(verifyToken);
+    // console.log("statetoken", token);
   };
 
   return (

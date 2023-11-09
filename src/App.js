@@ -43,6 +43,8 @@ function App() {
   const [products, setProducts] = useState([]);
   const [users, setusers] = useState([]);
   const [LoginUser, setLoginUser] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [token, setToken] = useState([]);
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -54,17 +56,41 @@ function App() {
     password: "",
   });
 
+  // admin users
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productData = await axios.get("http://localhost:8000/api/admin/products");
-        setProducts(productData.data.data);
+        const userData = await axios.get("http://localhost:8000/api/admin/users");
+        // console.log("userData", userData);
+        setusers(userData.data.data);
+        // console.log("users",users);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
+
+
+  //show all products in homepage
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productData = await axios.get("http://localhost:8000/api/admin/products");
+        setProducts(productData.data.data);
+        // console.log("loginuser", LoginUser);
+        // console.log('productData',products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // getting orders
+
+  //
 
   return (
     <div className="App">
@@ -109,6 +135,10 @@ function App() {
           setusers,
           LoginUser,
           setLoginUser,
+          orders,
+          setOrders,
+          token,
+          setToken,
         }}
       >
         <Routes>
@@ -117,7 +147,7 @@ function App() {
           <Route path="/loginpage" element={<LoginPage />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/aboutus" element={<About />} />
-          <Route path="/addcart" element={<AddCart />} />
+          <Route path="/cartItems" element={<AddCart />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/kidsclothing" element={<KidsCloths />} />
           <Route path="/productdetails/:id" element={<ViewProduct />} />

@@ -1,31 +1,29 @@
-import React from 'react'
-import { useContext } from 'react'
-import { userDataContext } from '../userDataContext'
-import { useNavigate } from 'react-router-dom';
-import {
-    MDBContainer,
-    MDBCardBody,
-    MDBCardImage,
-    MDBCardTitle,
-    MDBCard,
-    MDBCol,
-    MDBRow,
-  } from 'mdb-react-ui-kit';
-
+import React from "react";
+import { useContext } from "react";
+import { userDataContext } from "../userDataContext";
+import { useNavigate } from "react-router-dom";
+import { MDBContainer, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCard, MDBCol, MDBRow } from "mdb-react-ui-kit";
 
 const Footwear = () => {
-    const {products}=useContext(userDataContext)
-    const FootFiltered=products.filter((item)=>item.category==="footwear")
-    const navigate = useNavigate();
+  const { products } = useContext(userDataContext);
+  const FootFiltered = products.filter((item) => item.category === "Footwear & Accessories");
+  console.log("FootFiltered", FootFiltered);
+  const navigate = useNavigate();
   return (
     <div>
-          <section id="card-product">
+      <section id="card-product">
         <MDBContainer fluid className="my-5">
           <MDBRow className="m-3">
-            
             <h1 className="arrival-head">Footwear and Accessories</h1>
             {FootFiltered.map((item) => (
-              <MDBCol xl="3" lg="4" md="4" sm="6" key={item._id} onClick={()=>navigate(`/productdetails/${item._id}`)}>
+              <MDBCol
+                xl="3"
+                lg="4"
+                md="4"
+                sm="6"
+                key={item._id}
+                onClick={() => navigate(`/productdetails/${item._id}`)}
+              >
                 <MDBCard className="text-black">
                   <MDBCardImage src={item.src} position="top" alt={item.name} />
                   <MDBCardBody>
@@ -51,9 +49,8 @@ const Footwear = () => {
           </MDBRow>
         </MDBContainer>
       </section>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Footwear
+export default Footwear;

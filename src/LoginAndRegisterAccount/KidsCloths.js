@@ -16,7 +16,7 @@ import { userDataContext } from "../userDataContext";
 const MainProducts = () => {
   const {products}=useContext(userDataContext)
 
-  const clothProducts = products.filter((value) => value.category === 'kidscloths');
+  const clothProducts = products.filter((value) => value.category === 'Kids clothing');
   const navigate = useNavigate();
 
 

@@ -18,6 +18,7 @@ const MainProducts = () => {
   const {products}=useContext(userDataContext)
 
   const MainProducts=products.slice(0,8);
+  
     const navigate =useNavigate()
 
     

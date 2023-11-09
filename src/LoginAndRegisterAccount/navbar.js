@@ -26,16 +26,22 @@ import Babyimage from "./attachment_87322237-removebg-preview.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { userDataContext } from "../userDataContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Navbar = () => {
   const [showBasic, setShowBasic] = useState(false);
   const {
-    cartItems,
     isAuthenticated,
     setIsAuthenticated,
     productsDeatils,
     search,
+    orders,
+    users,
+    LoginUser,
+    setOrders,
     setSearch,
+    token
   } = useContext(userDataContext);
   const navigate = useNavigate();
 
@@ -51,9 +57,42 @@ const Navbar = () => {
 
   const logout = () => {
     setIsAuthenticated(false);
+    localStorage.clear();
     navigate("/");
   };
 
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    navigate("/cartItems");
+    const userCartItems = async () => {
+      try {
+        const userId = LoginUser.id;
+        console.log("userId",userId);
+        const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+        const mapData = response.data.data.cart;
+        setOrders(mapData); 
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    userCartItems()
+  };
+
+  
+    // const userCartItems = async () => {
+    //   try {
+    //     const userId = LoginUser.id;
+    //     console.log("userId",userId);
+    //     const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+    //     // console.log("response",response);
+    //     const mapData = response.data.data.cart;
+    //     // console.log("mapData", mapData);
+    //     setOrders(mapData); 
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // console.log("LoginUserLenght",LoginUser.cart.length);
 
   return (
     <div>
@@ -73,11 +112,7 @@ const Navbar = () => {
               <img src={Babyimage} className="baby-icon" alt="img-no"></img>
 
               <MDBNavbarItem active>
-                <MDBNavbarLink
-                  aria-current="page"
-                  href=""
-                  className="nav-text "
-                >
+                <MDBNavbarLink aria-current="page" href="" className="nav-text ">
                   <Link to="/" className="text-black">
                     Home
                   </Link>
@@ -85,19 +120,14 @@ const Navbar = () => {
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink href="" className="nav-text ">
-                <Link to="/" className="text-black">
+                  <Link to="/" className="text-black">
                     Shop
                   </Link>
-                  
                 </MDBNavbarLink>
               </MDBNavbarItem>
 
               <MDBDropdown className="Dropdown">
-                <MDBDropdownToggle
-                  color="light"
-                  className="Dropdown-text"
-                  style={{ textTransform: "capitalize" } }
-                >
+                <MDBDropdownToggle color="light" className="Dropdown-text" style={{ textTransform: "capitalize" }}>
                   Category
                 </MDBDropdownToggle>
                 <MDBDropdownMenu light>
@@ -132,10 +162,7 @@ const Navbar = () => {
 
             <div className="fafa-div">
               <MDBInputGroup className="search-bar ">
-                <MDBInput
-                  label="Search"
-                  onChange={(e) => setSearch(e.target.value)}
-                >
+                <MDBInput label="Search" onChange={(e) => setSearch(e.target.value)}>
                   {search !== "" && (
                     <MDBListGroup
                       className="search-results"
@@ -143,7 +170,7 @@ const Navbar = () => {
                         zIndex: "5",
                         position: "absolute",
                         borderRadius: "5px",
-                        padding :"2px",
+                        padding: "2px",
                         border: "1px solid grey",
                         backgroundColor: "white",
                         boxShadow: "0px 10px 10px rgba(0, 0, 0, 0.5)",
@@ -156,9 +183,7 @@ const Navbar = () => {
                       light
                     >
                       {productsDeatils
-                        .filter((item) =>
-                          item.name.toLowerCase().includes(search.toLowerCase())
-                        )
+                        .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
                         .map((item) => (
                           <MDBListGroupItem
                             key={item.id}
@@ -178,40 +203,27 @@ const Navbar = () => {
                 </MDBBtn>
               </MDBInputGroup>
 
-              <a className="mx-3 icon" href="">
+              <a className="mx-3 icon" href=" ">
                 <Link to="/loginpage">
                   <MDBIcon fas icon="user" className="fafa-icon" />
                 </Link>
               </a>
 
               {isAuthenticated && (
-                <a className="mx-2 shopping-cart" href="">
-                  <Link to="/addcart">
-                    {cartItems.length > 0 && (
-                      <MDBBadge
-                        color="danger"
-                        className="cart-notification"
-                        notification
-                        pill
-                      >
-                        {cartItems.length}
+                <a className="mx-2 shopping-cart" href=" ">
+                  <div onClick={handleCartClick}>
+                    {LoginUser.cart.length > 0 && (
+                      <MDBBadge color="danger" className="cart-notification" notification pill>
+                        {LoginUser.cart.length}
                       </MDBBadge>
                     )}
-                    <MDBIcon
-                      fas
-                      icon="shopping-cart mt-4"
-                      className="fafa-icon"
-                    />
-                  </Link>
+                    <MDBIcon fas icon="shopping-cart mt-4" className="fafa-icon" />
+                  </div>
                         
                 </a>
               )}
               {isAuthenticated && (
-                <MDBBtn
-                  className="me-1  logout-button"
-                  color="danger"
-                  onClick={logout}
-                >
+                <MDBBtn className="me-1  logout-button" color="danger" onClick={logout}>
                   Log out
                 </MDBBtn>
               )}

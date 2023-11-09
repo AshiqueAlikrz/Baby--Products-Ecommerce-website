@@ -17,68 +17,60 @@ import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect ,useState} from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 const AddCart = () => {
-  const { cartItems, setCartItems, isAuthenticated, Profile, setProfile, RegistrationData, users, setusers } =
-  useContext(userDataContext);
+  const { setOrders, orders, LoginUser } = useContext(userDataContext);
 
-  const [orders,setOrders]=useState([])
-  
   useEffect(() => {
     const userCartItems = async () => {
       try {
-        const id = users.user._id;
-        const response = await axios.get(`http://localhost:8000/api/user/${id}/cart`);
+        const userId = LoginUser.id;
+        const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
         const mapData = response.data.data.cart;
         setOrders(mapData);
+        // console.log("mapData", mapData);
+        // console.log("useffect");
       } catch (error) {
-        console.error("Error fetching user cart items:", error);
+        console.error(error);
       }
     };
     userCartItems();
-  },[]);
-  // const AddedItems = users.data.user;
-  // console.log("AddedItems", AddedItems);
+  }, [LoginUser, setOrders]);
 
-  const handleIncreaseQuantity = (recvId) => {
-    const cartPlus = cartItems.map((data) => {
-      if (data.id === recvId) {
-        return { ...data, qty: data.qty + 1 };
-      }
-      return data;
-    });
-    setCartItems(cartPlus);
+  const handleQuantity = async (recvId, recNum) => {
+    const userId = LoginUser.id;
+    console.log("userId", userId);
+    const productId = { id: recvId, num: recNum };
+    console.log("productId", userId);
+    await axios.put(`http://localhost:8000/api/user/${userId}/cart`, productId);
+    const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+    const mapData = response.data.data.cart;
+    setOrders(mapData);
   };
 
-  const handleDecreaseQuantity = (id) => {
-    const cartMinus = cartItems.map((data) => {
-      if (data.id === parseInt(id) && data.qty > 1) {
-        return { ...data, qty: data.qty - 1 };
-      }
-      return data;
-    });
-    setCartItems(cartMinus);
+  const handleRemove = async (ProductId) => {
+    const userId = LoginUser.id;
+    await axios.delete(`http://localhost:8000/api/user/${userId}/cart/${ProductId}`);
+    const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+    const mapData = response.data.data.cart;
+    setOrders(mapData);
   };
 
-  const navigate = useNavigate();
   let totalPrice = 0;
 
-  cartItems.forEach((element) => {
-    totalPrice += element.price * element.qty;
-  });
+  for (const order of orders) {
+    totalPrice += order.qty * order.product.price;
+  }
+  console.log("totalPrice", totalPrice);
 
-  const handleRemove = (id) => {
-    const afterRemoved = cartItems.filter((item) => item.id !== parseInt(id));
-    setCartItems(afterRemoved);
-  };
-
-  const BuyClick = (e) => {
-    console.log("users", users.user.cart);
-    e.preventDefault();
-  };
-
+  const BuyClick = async () => {
+    // console.log("orders", orders.product);
+    const userId = LoginUser;
+    console.log("paymentID", userId);
+    const response = await axios.post(`http://localhost:8000/api/user/${userId}/payment`);
+    };
 
   return (
     <div>
@@ -103,36 +95,36 @@ const AddCart = () => {
 
                         <hr className="my-4" />
                         {orders.map((values, index) => (
-                          <MDBRow className="mb-4 d-flex justify-content-between align-items-center" key={values._id}>
+                          <MDBRow className="mb-4 d-flex justify-content-between align-items-center" key={index}>
                             <MDBCol md="2" lg="2" xl="2">
-                              <MDBCardImage src={values.src} fluid className="rounded-3" alt="Cotton T-shirt" />
+                              <MDBCardImage src={values.product.src} fluid className="rounded-3" alt="Cotton T-shirt" />
                             </MDBCol>
                             <MDBCol md="3" lg="3" xl="3">
                               <MDBTypography tag="h6" className="text-muted">
-                                {values.title}
+                                {values.product.title}
                               </MDBTypography>
                               <MDBTypography tag="h6" className="text-black mb-0">
-                                {values.category}
+                                {values.product.category}
                               </MDBTypography>
                             </MDBCol>
                             <MDBCol md="3" lg="3" xl="3" className="d-flex align-items-center">
-                              <MDBBtn color="link" className="px-2" onClick={() => handleDecreaseQuantity(values.id)}>
-                          <MDBIcon fas icon="minus" />
-                        </MDBBtn>
+                              <MDBBtn color="link" className="px-2" onClick={() => handleQuantity(values._id, -1)}>
+                                <MDBIcon fas icon="minus" />
+                              </MDBBtn>
 
                               <MDBInput type="number" min="1" value={values.qty} size="sm" />
 
-                              <MDBBtn color="link" className="px-2" onClick={() => handleIncreaseQuantity(values._id)}>
-                          <MDBIcon fas icon="plus" />
-                        </MDBBtn>
+                              <MDBBtn color="link" className="px-2" onClick={() => handleQuantity(values._id, +1)}>
+                                <MDBIcon fas icon="plus" />
+                              </MDBBtn>
                             </MDBCol>
                             <MDBCol md="3" lg="2" xl="2" className="text-end">
                               <MDBTypography tag="h6" className="mb-0">
-                                ₹ {values.qty * values.price}
+                                ₹ {values.qty * values.product.price}
                               </MDBTypography>
                             </MDBCol>
                             <MDBCol md="1" lg="1" xl="1" className="text-end">
-                              <MDBIcon fas icon="times" onClick={() => handleRemove(values.id)} />
+                              <MDBIcon fas icon="times" onClick={() => handleRemove(values._id)} />
                             </MDBCol>
                             <hr className="my-4" />
                           </MDBRow>
@@ -170,7 +162,7 @@ const AddCart = () => {
                           </MDBTypography>
                         </div>
 
-                        <MDBBtn color="warning" block size="lg" onClick={BuyClick}>
+                        <MDBBtn color="warning" block size="lg" onClick={()=>BuyClick()}>
                           BUY
                         </MDBBtn>
                       </div>

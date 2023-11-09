@@ -10,6 +10,9 @@ const EditPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const editproducts = products.find((data) => data._id === id);
+  console.log("editproducts", editproducts);
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -62,11 +65,12 @@ const EditPage = () => {
       try {
         const response = await axios.put("http://localhost:8000/api/admin/products", payload);
         // const editProduct=response.data;
-        console.log("pro", response);
+        // console.log("pro", response);
         // console.log(response);
         // const existingProduct = editProduct.find((product) => product._id === id);
         // console.log(existingProduct);
         // setProducts(existingProduct);
+        setIsSubmitted(true);
       } catch (err) {
         console.log(err);
       }
@@ -75,12 +79,11 @@ const EditPage = () => {
     handleEdit();
 
     // console.log(" submitted:", products);
-
+    
     // const updatedDelete = products.map((product) =>
     //   product.id === id ? { ...product, ...formData } : product
     // );
     // setProducts(updatedDelete);
-    // setIsSubmitted(true);
   };
 
   return (
@@ -94,48 +97,45 @@ const EditPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="image">Image URL:</label>
-            <input
-              type="text"
-              id="image"
-              name="src"
-              required
-            />
+            <input type="text" id="src" name="src" defaultValue={editproducts.src} required />
           </div>
           <div className="form-group">
             <label htmlFor="category">Category:</label>
-            <select id="category" name="category" required>
+            <select id="category" name="category" defaultValue={editproducts.category} required>
               <option value="">Select a category</option>
-              <option value="Babycare">Babycare</option>
+              <option value="Babycare">babycare</option>
               <option value="Footwear & Accessories">Footwear & Accessories</option>
               <option value="Kids clothing">Kids clothing</option>
             </select>
           </div>
           <div className="form-group">
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="title" required />
+            <input type="text" id="name" name="title" defaultValue={editproducts.title} required />
           </div>
           <div className="form-group">
             <label htmlFor="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea id="description" name="description" required defaultValue={editproducts.description}></textarea>
           </div>
           <div className="form-group">
             <label htmlFor="price">Price:</label>
-            <input type="number" id="price" name="price" required />
+            <input type="number" id="price" name="price" required defaultValue={editproducts.price} />
           </div>
           <div className="form-group">
-            <label htmlFor="status">Status:</label>
-            <select id="status" name="status" required>
+            <label htmlFor="status" >
+              Status:
+            </label>
+            <select id="status" name="status" required defaultValue={editproducts.status}>
               <option value="popular">popular</option>
               <option value="nopopular">not popular</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="qty">Quantity:</label>
-            <input type="number" id="qty" name="qty" required />
+            <label htmlFor="qty" >Quantity:</label>
+            <input type="number" id="qty" name="qty" required defaultValue={editproducts.qty} />
           </div>
           <div className="form-group">
             <label htmlFor="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" required />
+            <input type="text" id="brand" name="brand" required  defaultValue={editproducts.brand}/>
           </div>
           <button type="submit" className="save-button">
             Save

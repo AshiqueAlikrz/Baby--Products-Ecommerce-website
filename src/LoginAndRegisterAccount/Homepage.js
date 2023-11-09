@@ -63,38 +63,43 @@ const Homepage = () => {
       <MainProducts />
 
       <section>
-        <h1 className="arrival-head">Why They Loving Us</h1>
-        <div className="review-div">
-          <img
-            className="review-image"
-            src="http://www.pngall.com/wp-content/uploads/2018/03/Child-PNG-Image.png"
-          ></img>
-          <h3 className="review-para">
-            " This is the very good quality products. I hd ordered running shoes they delivered low quality. But in the
-            picture look like very good item, I used with in one month shoes broke. customer service and delivery is
-            good. It's ok "
-          </h3>
-          <img
-            className="five-star"
-            src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
-          ></img>
-        </div>
+  <h1 className="arrival-head">Why They Loving Us</h1>
+  <div className="review-div">
+    <img
+      className="review-image"
+      src="http://www.pngall.com/wp-content/uploads/2018/03/Child-PNG-Image.png"
+      alt="Happy Child"
+    />
+    <h3 className="review-para">
+      " This is the very good quality products. I hd ordered running shoes they delivered low quality. But in the
+      picture look like very good item, I used with in one month shoes broke. customer service and delivery is
+      good. It's ok "
+    </h3>
+    <img
+      className="five-star"
+      src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
+      alt="Five Star Rating"
+    />
+  </div>
 
-        <div className="review-div2">
-          <img
-            className="review-image2"
-            src="http://www.sproutpeds.com/wp-content/uploads/revslider/fable/slider_slide2_img1.png"
-          ></img>
-          <h3 className="review-para2">
-            " Very good products for buying baby products and i got better quality items from this.Good customer service
-            and higly discound by ordering od combo items "
-          </h3>
-          <img
-            className="five-star2"
-            src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
-          ></img>
-        </div>
-      </section>
+  <div className="review-div2">
+    <img
+      className="review-image2"
+      src="http://www.sproutpeds.com/wp-content/uploads/revslider/fable/slider_slide2_img1.png"
+      alt="Happy Child"
+    />
+    <h3 className="review-para2">
+      " Very good products for buying baby products and i got better quality items from this.Good customer service
+      and higly discound by ordering od combo items "
+    </h3>
+    <img
+      className="five-star2"
+      src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
+      alt="Five Star Rating"
+    />
+  </div>
+</section>
+
 
       <MostPopular />
 
@@ -200,22 +205,22 @@ const Homepage = () => {
                 <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
                   <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
                   <p>
-                    <a href="" className="text-reset">
+                    <a  className="text-reset">
                       Pricing
                     </a>
                   </p>
                   <p>
-                    <a href="" className="text-reset">
+                    <a className="text-reset">
                       Settings
                     </a>
                   </p>
                   <p>
-                    <a href="" className="text-reset">
+                    <a className="text-reset">
                       Orders
                     </a>
                   </p>
                   <p>
-                    <a href="" className="text-reset">
+                    <a  className="text-reset">
                       Help
                     </a>
                   </p>
