@@ -45,6 +45,7 @@ function App() {
   const [LoginUser, setLoginUser] = useState([]);
   const [orders, setOrders] = useState([]);
   const [token, setToken] = useState([]);
+  const [cartNot, setcartNot] = useState([]);
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -71,7 +72,6 @@ function App() {
     };
     fetchData();
   }, []);
-
 
   //show all products in homepage
   useEffect(() => {
@@ -139,6 +139,8 @@ function App() {
           setOrders,
           token,
           setToken,
+          cartNot,
+          setcartNot,
         }}
       >
         <Routes>

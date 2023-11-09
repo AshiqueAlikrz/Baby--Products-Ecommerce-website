@@ -28,9 +28,11 @@ const LoginPage = () => {
       try {
         const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
         const userId = responseUser.data.data;
+        localStorage.setItem("jwt_token", userId.jwt_token);
         setLoginUser(userId);
         setIsAuthenticated(true);
         navigate("/");
+        alert("User login successful");
       } catch (errorUser) {
         try {
           await axios.post("http://localhost:8000/api/admin/login", payload);

@@ -41,7 +41,7 @@ const Navbar = () => {
     LoginUser,
     setOrders,
     setSearch,
-    token
+    token,
   } = useContext(userDataContext);
   const navigate = useNavigate();
 
@@ -64,35 +64,26 @@ const Navbar = () => {
   const handleCartClick = (e) => {
     e.preventDefault();
     navigate("/cartItems");
-    const userCartItems = async () => {
-      try {
-        const userId = LoginUser.id;
-        console.log("userId",userId);
-        const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
-        const mapData = response.data.data.cart;
-        setOrders(mapData); 
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    userCartItems()
   };
 
-  
-    // const userCartItems = async () => {
-    //   try {
-    //     const userId = LoginUser.id;
-    //     console.log("userId",userId);
-    //     const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
-    //     // console.log("response",response);
-    //     const mapData = response.data.data.cart;
-    //     // console.log("mapData", mapData);
-    //     setOrders(mapData); 
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // console.log("LoginUserLenght",LoginUser.cart.length);
+  useEffect(() => {
+    const userCartItems = async () => {
+      if (isAuthenticated) {
+        try {
+          const userId = LoginUser.id;
+          console.log("userId", userId);
+          const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+          const mapData = response.data.data.cart;
+          setOrders(mapData);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    userCartItems();
+  }, [isAuthenticated,LoginUser.id,setOrders]);
+
+  // console.log("LoginUserLenght",LoginUser.cart.length);
 
   return (
     <div>
@@ -212,9 +203,9 @@ const Navbar = () => {
               {isAuthenticated && (
                 <a className="mx-2 shopping-cart" href=" ">
                   <div onClick={handleCartClick}>
-                    {LoginUser.cart.length > 0 && (
+                    {orders.length > 0 && (
                       <MDBBadge color="danger" className="cart-notification" notification pill>
-                        {LoginUser.cart.length}
+                        {orders.length}
                       </MDBBadge>
                     )}
                     <MDBIcon fas icon="shopping-cart mt-4" className="fafa-icon" />

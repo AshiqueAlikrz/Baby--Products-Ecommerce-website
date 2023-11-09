@@ -10,7 +10,7 @@ import { userDataContext } from "../userDataContext";
 import { useNavigate } from "react-router-dom";
 
 const ViewProduct = () => {
-  const {isAuthenticated, LoginUser, setusers, token } = useContext(userDataContext);
+  const {isAuthenticated, LoginUser, setusers,setOrders } = useContext(userDataContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -19,8 +19,8 @@ const ViewProduct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tokenVerify = {headers: { Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,},};
-        const response = await axios.get(`http://localhost:8000/api/user/products/${id}`,tokenVerify);
+        // const tokenVerify = {headers: { Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,},};
+        const response = await axios.get(`http://localhost:8000/api/user/products/${id}`);
         const viewProduct = response.data.data;
         setProduct(viewProduct);
       } catch (error) {
@@ -35,15 +35,16 @@ const ViewProduct = () => {
   const addToCart = async (newItems,e) => {
     e.preventDefault();
     try {
-      const userPayload = LoginUser;
+      const userPayload = LoginUser.id;
       const productPayload = { id: newItems };
-      // console.log("userPayload:", userPayload);
-      // console.log("productPayload:", productPayload);
-
-      const response = await axios.post(`http://localhost:8000/api/user/${userPayload}/cart`, productPayload);
-      const updatedData = response.data;
-      console.log("updatedData",updatedData);
-      setusers(updatedData);
+     await axios.post(`http://localhost:8000/api/user/${userPayload}/cart`, productPayload);
+      const response = await axios.get(`http://localhost:8000/api/user/${userPayload}/cart`);
+      // console.log("response",response);
+      const mapData = response.data.data.cart;
+      setOrders(mapData);
+      // const updatedData = response.data;
+      // console.log("updatedData",updatedData);
+      // setusers(updatedData);
       // console.log("users", users);
       alert("cart added successfully");
     } catch (error) {

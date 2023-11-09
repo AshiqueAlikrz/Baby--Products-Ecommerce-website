@@ -28,10 +28,11 @@ const AddCart = () => {
       try {
         const userId = LoginUser.id;
         const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+        // console.log("response",response);
         const mapData = response.data.data.cart;
         setOrders(mapData);
-        // console.log("mapData", mapData);
-        // console.log("useffect");
+        console.log("mapData",mapData);
+        console.log("orders", orders);
       } catch (error) {
         console.error(error);
       }
@@ -60,17 +61,16 @@ const AddCart = () => {
 
   let totalPrice = 0;
 
-  for (const order of orders) {
-    totalPrice += order.qty * order.product.price;
-  }
-  console.log("totalPrice", totalPrice);
+  // for (const order of orders) {
+  //   totalPrice += order.qty * order.product.price;
+  // }
 
   const BuyClick = async () => {
     // console.log("orders", orders.product);
     const userId = LoginUser;
     console.log("paymentID", userId);
     const response = await axios.post(`http://localhost:8000/api/user/${userId}/payment`);
-    };
+  };
 
   return (
     <div>
@@ -162,7 +162,7 @@ const AddCart = () => {
                           </MDBTypography>
                         </div>
 
-                        <MDBBtn color="warning" block size="lg" onClick={()=>BuyClick()}>
+                        <MDBBtn color="warning" block size="lg" onClick={() => BuyClick()}>
                           BUY
                         </MDBBtn>
                       </div>
