@@ -17,6 +17,7 @@ import Babycare from "./LoginAndRegisterAccount/Babycare";
 import Footwear from "./LoginAndRegisterAccount/footwear";
 import Admin from "./LoginAndRegisterAccount/Admin/admin";
 import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
+import SuccessAlert from "./LoginAndRegisterAccount/successAlert";
 import { useEffect } from "react";
 import axios from "axios";
 // import User from "./LoginAndRegisterAccount/Admin/user";
@@ -29,10 +30,6 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [search, setSearch] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [AdminLog, setAdminLog] = useState(false);
   const [Delete, setDelete] = useState(productsDeatils);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -161,6 +158,7 @@ function App() {
           <Route path="/addproducts" element={<Sidebar />} />
           <Route path="/editpage/:id" element={<Sidebar />} />
           <Route path="/info/:id" element={<Sidebar />} />
+          <Route path="/payment/success" element={<SuccessAlert />} />
         </Routes>
       </userDataContext.Provider>
     </div>

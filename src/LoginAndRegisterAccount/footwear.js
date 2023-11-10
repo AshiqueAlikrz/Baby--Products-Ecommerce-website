@@ -7,8 +7,9 @@ import { MDBContainer, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCard, MDBCol,
 const Footwear = () => {
   const { products } = useContext(userDataContext);
   const FootFiltered = products.filter((item) => item.category === "Footwear & Accessories");
-  console.log("FootFiltered", FootFiltered);
+
   const navigate = useNavigate();
+
   return (
     <div>
       <section id="card-product">

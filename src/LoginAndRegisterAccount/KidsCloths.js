@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { userDataContext } from "../userDataContext";
 
-
+  
 const MainProducts = () => {
   const {products}=useContext(userDataContext)
 

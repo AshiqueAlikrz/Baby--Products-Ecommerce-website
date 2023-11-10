@@ -10,13 +10,13 @@ const User = () => {
 
   const {users, setusers}=useContext(userDataContext);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userData = await axios.get( "http://localhost:8000/api/admin/users");
         // console.log("userData", userData);
         setusers(userData.data.data);
+     console.log("adminusers",users);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -50,7 +50,7 @@ const User = () => {
                     <td>
                       {" "}
                       <button
-                        onClick={() => navigate(`/info/${user.id}`)}
+                        onClick={() => navigate(`/info/${user._id}`)}
                         style={{
                           backgroundColor: "black",
                           color: "white",

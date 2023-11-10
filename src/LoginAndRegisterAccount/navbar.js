@@ -45,13 +45,18 @@ const Navbar = () => {
   } = useContext(userDataContext);
   const navigate = useNavigate();
 
-  const toKidsCloth = () => {
+  const toKidsCloth = (e) => {
+    e.preventDefault();
     navigate("/kidsclothing");
   };
-  const toBabyCare = () => {
+
+  const toBabyCare = (e) => {
+    e.preventDefault();
     navigate("/babycare");
   };
-  const toFootWear = () => {
+  
+  const toFootWear = (e) => {
+    e.preventDefault();
     navigate("/footwear");
   };
 

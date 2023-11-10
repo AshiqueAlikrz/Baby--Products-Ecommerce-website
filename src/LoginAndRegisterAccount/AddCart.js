@@ -23,6 +23,8 @@ import axios from "axios";
 const AddCart = () => {
   const { setOrders, orders, LoginUser } = useContext(userDataContext);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const userCartItems = async () => {
       try {
@@ -31,8 +33,6 @@ const AddCart = () => {
         // console.log("response",response);
         const mapData = response.data.data.cart;
         setOrders(mapData);
-        console.log("mapData",mapData);
-        console.log("orders", orders);
       } catch (error) {
         console.error(error);
       }
@@ -61,17 +61,18 @@ const AddCart = () => {
 
   let totalPrice = 0;
 
-  // for (const order of orders) {
-  //   totalPrice += order.qty * order.product.price;
-  // }
+  for (const order of orders) {
+    totalPrice += order.qty * order.product.price;
+  }
 
   const BuyClick = async () => {
-    // console.log("orders", orders.product);
-    const userId = LoginUser;
-    console.log("paymentID", userId);
+    const userId = LoginUser.id;
     const response = await axios.post(`http://localhost:8000/api/user/${userId}/payment`);
+    window.open(response.data.url);
   };
 
+ 
+  
   return (
     <div>
       <Navbar />

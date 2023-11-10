@@ -5,15 +5,17 @@ import { useParams } from "react-router-dom";
 import "./Info.css";
 
 const Info = () => {
-  const { Profile } = useContext(userDataContext);
+  const { users } = useContext(userDataContext);
   const { id } = useParams();
   const idchk = Number(id);
 
-  const userInfo = Profile.find((user) => user.id === idchk);
-  console.log(userInfo);
+  console.log("userInfo",users);
+  
+  const userInfo = users.find((user) => user.id === idchk);
 
   return (
-    <div className="d-flex flex-column align-items-center pt-3 ">
+    <div>
+    {/* <div className="d-flex flex-column align-items-center pt-3 ">
       <div className="d-flex align-items-center gap-3">
         <MDBIcon
           fas
@@ -58,6 +60,7 @@ const Info = () => {
           </tbody>
         </table>
       </div>
+    </div> */}
     </div>
   );
 };
