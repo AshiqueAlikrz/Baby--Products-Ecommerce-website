@@ -26,7 +26,6 @@ const User = () => {
 
   return (
     <div>
-      <h1>hello user</h1>
       <div className="user-details-table">
         <table>
           <thead>
@@ -34,7 +33,7 @@ const User = () => {
               <th>ID</th>
               <th>Name</th>
               <th>E-mail</th>
-              <th>No. of Items</th>
+              <th>No. of Orders</th>
               <th>More Details</th>
             </tr>
           </thead>
@@ -50,7 +49,7 @@ const User = () => {
                     <td>
                       {" "}
                       <button
-                        onClick={() => navigate(`/info/${user._id}`)}
+                        onClick={() => navigate(`/info/${user._id}/${user.name}/${user.email}`)}
                         style={{
                           backgroundColor: "black",
                           color: "white",

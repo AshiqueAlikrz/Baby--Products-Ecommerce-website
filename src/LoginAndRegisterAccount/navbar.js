@@ -34,14 +34,15 @@ const Navbar = () => {
   const {
     isAuthenticated,
     setIsAuthenticated,
-    productsDeatils,
     search,
     orders,
+    products,
     users,
     LoginUser,
     setOrders,
     setSearch,
     token,
+    
   } = useContext(userDataContext);
   const navigate = useNavigate();
 
@@ -80,6 +81,7 @@ const Navbar = () => {
           const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
           const mapData = response.data.data.cart;
           setOrders(mapData);
+          console.log("products",products);
         } catch (error) {
           console.error(error);
         }
@@ -178,17 +180,17 @@ const Navbar = () => {
                       }}
                       light
                     >
-                      {productsDeatils
-                        .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
-                        .map((item) => (
+                      {products
+                        .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+                        .map((item,index) => (
                           <MDBListGroupItem
-                            key={item.id}
+                            key={index}
                             onClick={() => {
-                              navigate(`/productdetails/${item.id}`);
-                              setSearch("");
+                              navigate(`/productdetails/${item._id}`);
+                              setSearch(" ");
                             }}
                           >
-                            {item.name}
+                            {item.title}
                           </MDBListGroupItem>
                         ))}
                     </MDBListGroup>

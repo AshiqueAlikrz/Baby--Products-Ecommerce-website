@@ -16,7 +16,7 @@ const SuccessAlert = () => {
         setIsChecked(true);
         setTimeout(() => {
             navigate('/');
-          }, 10000);
+          }, 3000);
       }, 6000);
     };
     fetchData();

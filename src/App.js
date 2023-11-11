@@ -30,19 +30,11 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [search, setSearch] = useState("");
-  const [Delete, setDelete] = useState(productsDeatils);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [registered, setRegistered] = useState(false);
-  const [Profile, setProfile] = useState(dummyData);
   const [products, setProducts] = useState([]);
   const [users, setusers] = useState([]);
   const [LoginUser, setLoginUser] = useState([]);
   const [orders, setOrders] = useState([]);
   const [token, setToken] = useState([]);
-  const [cartNot, setcartNot] = useState([]);
   const [RegistrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -62,6 +54,7 @@ function App() {
         const userData = await axios.get("http://localhost:8000/api/admin/users");
         // console.log("userData", userData);
         setusers(userData.data.data);
+        
         // console.log("users",users);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,7 +70,7 @@ function App() {
         const productData = await axios.get("http://localhost:8000/api/admin/products");
         setProducts(productData.data.data);
         // console.log("loginuser", LoginUser);
-        // console.log('productData',products);
+        console.log('productData',productData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -93,8 +86,6 @@ function App() {
     <div className="App">
       <userDataContext.Provider
         value={{
-          Profile,
-          setProfile,
           productsDeatils,
           cartItems,
           setCartItems,
@@ -102,32 +93,12 @@ function App() {
           setIsAuthenticated,
           search,
           setSearch,
-          loginEmail,
-          setLoginEmail,
-          loginPassword,
-          setLoginPassword,
-          isLoggedIn,
-          setIsLoggedIn,
-          AdminLog,
-          setAdminLog,
-          Delete,
-          setDelete,
-          username,
-          setUsername,
-          email,
-          setEmail,
-          password,
-          setPassword,
-          confirmPassword,
-          setConfirmPassword,
-          registered,
-          setRegistered,
           RegistrationData,
           setRegistrationData,
           LoginData,
           setLoginData,
-          products,
           setProducts,
+          products,
           users,
           setusers,
           LoginUser,
@@ -136,8 +107,6 @@ function App() {
           setOrders,
           token,
           setToken,
-          cartNot,
-          setcartNot,
         }}
       >
         <Routes>
@@ -157,7 +126,7 @@ function App() {
           <Route path="/adminproducts" element={<Sidebar />} />
           <Route path="/addproducts" element={<Sidebar />} />
           <Route path="/editpage/:id" element={<Sidebar />} />
-          <Route path="/info/:id" element={<Sidebar />} />
+          <Route path="/info/:id/:name/:email" element={<Sidebar />} />
           <Route path="/payment/success" element={<SuccessAlert />} />
         </Routes>
       </userDataContext.Provider>

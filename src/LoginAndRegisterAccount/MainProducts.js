@@ -16,6 +16,7 @@ import { userDataContext } from "../userDataContext";
 
 const MainProducts = () => {
   const {products}=useContext(userDataContext)
+  console.log("main products",products);
 
   const MainProducts=products.slice(0,8);
   
