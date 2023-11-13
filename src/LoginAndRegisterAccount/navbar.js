@@ -42,6 +42,7 @@ const Navbar = () => {
     setOrders,
     setSearch,
     token,
+    userId
     
   } = useContext(userDataContext);
   const navigate = useNavigate();
@@ -76,9 +77,9 @@ const Navbar = () => {
     const userCartItems = async () => {
       if (isAuthenticated) {
         try {
-          const userId = LoginUser.id;
+          const userID = userId;
           console.log("userId", userId);
-          const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+          const response = await axios.get(`http://localhost:8000/api/user/${userID}/cart`);
           const mapData = response.data.data.cart;
           setOrders(mapData);
           console.log("products",products);
@@ -88,9 +89,8 @@ const Navbar = () => {
       }
     };
     userCartItems();
-  }, [isAuthenticated,LoginUser.id,setOrders]);
+  }, [isAuthenticated,userId,setOrders]);
 
-  // console.log("LoginUserLenght",LoginUser.cart.length);
 
   return (
     <div>

@@ -15,22 +15,19 @@ import {
 import Navbar from "./navbar";
 import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
+import { Axios } from "../App";
 
 const AddCart = () => {
-  const { setOrders, orders, LoginUser } = useContext(userDataContext);
+  const { setOrders, orders, LoginUser,userId } = useContext(userDataContext);
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const userCartItems = async () => {
       try {
-        const userId = LoginUser.id;
-        const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
-        // console.log("response",response);
+        const userID = userId;
+        const response = await Axios.get(`/api/user/${userID}/cart`);
         const mapData = response.data.data.cart;
         setOrders(mapData);
       } catch (error) {
@@ -38,23 +35,22 @@ const AddCart = () => {
       }
     };
     userCartItems();
-  }, [LoginUser, setOrders]);
+  }, [userId, setOrders]);
 
   const handleQuantity = async (recvId, recNum) => {
-    const userId = LoginUser.id;
-    console.log("userId", userId);
+    const userID = userId;
     const productId = { id: recvId, num: recNum };
     console.log("productId", userId);
-    await axios.put(`http://localhost:8000/api/user/${userId}/cart`, productId);
-    const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+    await Axios.put(`/api/user/${userId}/cart`, productId);
+    const response = await Axios.get(`/api/user/${userID}/cart`);
     const mapData = response.data.data.cart;
     setOrders(mapData);
   };
 
   const handleRemove = async (ProductId) => {
-    const userId = LoginUser.id;
-    await axios.delete(`http://localhost:8000/api/user/${userId}/cart/${ProductId}`);
-    const response = await axios.get(`http://localhost:8000/api/user/${userId}/cart`);
+    const userID = userId;
+    await Axios.delete(`/api/user/${userId}/cart/${ProductId}`);
+    const response = await Axios.get(`api/user/${userID}/cart`);
     const mapData = response.data.data.cart;
     setOrders(mapData);
   };
@@ -66,8 +62,8 @@ const AddCart = () => {
   }
 
   const BuyClick = async () => {
-    const userId = LoginUser.id;
-    const response = await axios.post(`http://localhost:8000/api/user/${userId}/payment`);
+    const userID =userId;
+    const response = await Axios.post(`/api/user/${userID}/payment`);
     window.open(response.data.url);
   };
 

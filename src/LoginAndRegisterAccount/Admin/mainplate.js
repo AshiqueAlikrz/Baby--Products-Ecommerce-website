@@ -19,10 +19,12 @@ const Sidebar = () => {
 
   const handleLogout = (event) => {
     event.preventDefault();
+    localStorage.clear();
     navigate("/");
   };
 
   const navigate = useNavigate();
+  
   return (
     <div>
       <header className="header ">

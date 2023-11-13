@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const SuccessAlert = () => {
   const [isChecked, setIsChecked] = useState(false);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,8 +15,8 @@ const SuccessAlert = () => {
       setTimeout(() => {
         setIsChecked(true);
         setTimeout(() => {
-            navigate('/');
-          }, 3000);
+          navigate("/");
+        }, 3000);
       }, 6000);
     };
     fetchData();
@@ -53,29 +53,29 @@ const SuccessAlert = () => {
         </>
       ) : (
         <div>
-          <div class="loading">
-            <span class="l">M</span>
-            <span class="o">a</span>
-            <span class="a">k</span>
-            <span class="d">i</span>
-            <span class="i">n</span>
-            <span class="n">g</span>
+          <div className="loading">
+            <span className="l">M</span>
+            <span className="o">a</span>
+            <span className="a">k</span>
+            <span className="d">i</span>
+            <span className="i">n</span>
+            <span className="n">g</span>
             <span>&nbsp;</span>
-            <span class="g">P</span>
-            <span class="d1">a</span>
-            <span class="d2">y</span>
-            <span class="d3">m</span>
-            <span class="d4">e</span>
-            <span class="d5">n</span>
-            <span class="d6">t</span>
-            <span class="d7">.</span>
-            <span class="d8">.</span>
-            <span class="d9">.</span>
-            <div class="load">
-              <div class="progress"></div>
-              <div class="progress"></div>
-              <div class="progress"></div>
-              <div class="progress"></div>
+            <span className="g">P</span>
+            <span className="d1">a</span>
+            <span className="d2">y</span>
+            <span className="d3">m</span>
+            <span className="d4">e</span>
+            <span className="d5">n</span>
+            <span className="d6">t</span>
+            <span className="d7">.</span>
+            <span className="d8">.</span>
+            <span className="d9">.</span>
+            <div className="load">
+              <div className="progress"></div>
+              <div className="progress"></div>
+              <div className="progress"></div>
+              <div className="progress"></div>
             </div>
           </div>
         </div>

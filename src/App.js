@@ -9,7 +9,6 @@ import AddCart from "./LoginAndRegisterAccount/AddCart";
 import ViewProduct from "./LoginAndRegisterAccount/ViewProduct";
 import Footer from "./LoginAndRegisterAccount/Footer";
 import { useState } from "react";
-import { dummyData } from "./DummyUser";
 import { userDataContext } from "./userDataContext";
 import { productsDeatils } from "./LoginAndRegisterAccount/Products";
 import KidsCloths from "./LoginAndRegisterAccount/KidsCloths";
@@ -20,42 +19,38 @@ import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
 import SuccessAlert from "./LoginAndRegisterAccount/successAlert";
 import { useEffect } from "react";
 import axios from "axios";
-// import User from "./LoginAndRegisterAccount/Admin/user";
-// import AdminProducts from "./LoginAndRegisterAccount/Admin/adminProducts";
-// import AddProdcuts from "./LoginAndRegisterAccount/Admin/addProdcuts";
-// import EditPage from "./LoginAndRegisterAccount/Admin/EditPage";
-// import Info from "./LoginAndRegisterAccount/Admin/Info";
+
+const token =localStorage.getItem('jwt_token');
+
+
+
+export const Axios=axios.create({
+  baseURL:process.env.REACT_APP_BASE_URL,
+  headers:{
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}` 
+  },
+})
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
   const [users, setusers] = useState([]);
   const [LoginUser, setLoginUser] = useState([]);
   const [orders, setOrders] = useState([]);
-  const [token, setToken] = useState([]);
-  const [RegistrationData, setRegistrationData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [LoginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
+  const userId=localStorage.getItem('id');
+
+
 
   // admin users
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userData = await axios.get("http://localhost:8000/api/admin/users");
-        // console.log("userData", userData);
+        const userData = await Axios.get("/api/admin/users");
         setusers(userData.data.data);
-        
-        // console.log("users",users);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -64,13 +59,13 @@ function App() {
   }, []);
 
   //show all products in homepage
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productData = await axios.get("http://localhost:8000/api/admin/products");
+        const productData = await Axios.get("/api/admin/products");
+        token ? setIsAuthenticated(true) : setIsAuthenticated(false)
         setProducts(productData.data.data);
-        // console.log("loginuser", LoginUser);
-        console.log('productData',productData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -87,16 +82,12 @@ function App() {
       <userDataContext.Provider
         value={{
           productsDeatils,
-          cartItems,
-          setCartItems,
+          // cartItems,
+          // setCartItems,
           isAuthenticated,
           setIsAuthenticated,
           search,
           setSearch,
-          RegistrationData,
-          setRegistrationData,
-          LoginData,
-          setLoginData,
           setProducts,
           products,
           users,
@@ -105,8 +96,7 @@ function App() {
           setLoginUser,
           orders,
           setOrders,
-          token,
-          setToken,
+          userId
         }}
       >
         <Routes>

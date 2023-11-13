@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import Footer from "./Footer";
 import { userDataContext } from "../userDataContext";
-import axios from "axios";
+import { Axios } from "../App";
 
 const LoginPage = () => {
-  const { setIsAuthenticated, LoginUser, setLoginUser, token, setToken } = useContext(userDataContext);
+  const { setIsAuthenticated, setLoginUser } = useContext(userDataContext);
   const navigate = useNavigate();
 
   const toCreateAccount = () => {
@@ -26,18 +26,19 @@ const LoginPage = () => {
 
     if (payload) {
       try {
-        const responseUser = await axios.post("http://localhost:8000/api/user/login", payload);
+        const responseUser = await Axios.post("/api/user/login", payload);
         const userId = responseUser.data.data;
         localStorage.setItem("jwt_token", userId.jwt_token);
+        localStorage.setItem("id", userId.id);
         setLoginUser(userId);
         setIsAuthenticated(true);
         navigate("/");
         alert("User login successful");
       } catch (errorUser) {
         try {
-          await axios.post("http://localhost:8000/api/admin/login", payload);
+          await Axios.post("/api/admin/login", payload);
           alert("Admin logging successful");
-          navigate("/user");
+          window.location.replace("/user");
         } catch (errorAdmin) {
           console.error(errorAdmin);
           alert("Invalid Email or Password");
@@ -46,10 +47,6 @@ const LoginPage = () => {
     } else {
       alert("Invalid email or password");
     }
-
-    // const verifyToken = localStorage.getItem("jwt_token");
-    // setToken(verifyToken);
-    // console.log("statetoken", token);
   };
 
   return (

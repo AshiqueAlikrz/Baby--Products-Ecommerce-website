@@ -11,15 +11,13 @@ import {
 import BabyImage from "./attachment_87322237-removebg-preview.png";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar";
-// import { userDataContext } from "../userDataContext";
-// import { useNavigate } from "react-router-dom";
+import { Axios } from "../App";
+import { useNavigate } from "react-router-dom";
 
 
 const RegisterAccount = () => {
-  // const { Profile, setRegistrationData, isAuthenticated } =
-  //   useContext(userDataContext);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,8 +25,8 @@ const RegisterAccount = () => {
     const Email = e.target.email.value.trim();
     const Password = e.target.password.value.trim();
 
-    if (Email === "admin@gmail.com") {
-      alert("Email already used");
+    if (Email === "admin123@gmail.com") {
+      alert("email already used");
     } else {
 
       const payload = {
@@ -37,33 +35,23 @@ const RegisterAccount = () => {
         password: Password,
       };
 
-      // setProfile([
-      //   ...Profile,
-      //   {
-      //     id: UserID,
-      //     name: FullName,
-      //     email: Email,
-      //     password: Password,
-      //     orders: [],
-      //   },
-      // ]);
+    
 
       console.log(payload);
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/user/register",
+        const response = await Axios.post(
+          "/api/user/register",
           payload
-        );
+        );  
         console.log(response);
-        // console.log(" registration successful");
-        alert("registered");
+        alert("Account registered successfully");
+        navigate('/loginpage');
       } catch (err) {
         console.log(err);
-        alert("Error: " + err.message);
+        alert(err.response.data.message);
       }
 
-      // alert("Registration successful!");
-      // navigate("/loginpage");
+     
     }
   };
 
@@ -106,7 +94,7 @@ const RegisterAccount = () => {
                 <MDBInput
                   wrapperClass="mb-4"
                   label="Confirm Password"
-                  id="form3"
+                  id="form4"
                   type="password"
                   name="confirmPassword"
                 />
