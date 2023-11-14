@@ -216,8 +216,7 @@ const Navbar = () => {
                       </MDBBadge>
                     )}
                     <MDBIcon fas icon="shopping-cart mt-4" className="fafa-icon" />
-                  </div>
-                        
+                  </div>   
                 </a>
               )}
               {isAuthenticated && (

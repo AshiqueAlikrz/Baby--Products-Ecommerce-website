@@ -4,9 +4,10 @@ import { useContext } from "react";
 import { userDataContext } from "../../userDataContext";
 import "./edit.css";
 import axios from "axios";
+import uploadToCloudinary from "./utils/cloudinary";
 
 const EditPage = () => {
-  const { products, setProducts } = useContext(userDataContext);
+  const { products } = useContext(userDataContext);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -15,24 +16,11 @@ const EditPage = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [formData, setFormData] = useState({
-    src: "",
-    category: "",
-    title: "",
-    description: "",
-    price: "",
-    status: "popular",
-    qty: "",
-    brand: "",
-  });
-
-  const editvalues = {};
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const title = e.target.title.value;
-    const src = e.target.src.value;
+    const src = e.target.src.files[0];
     const category = e.target.category.value;
     const description = e.target.description.value;
     const price = e.target.price.value;
@@ -40,50 +28,19 @@ const EditPage = () => {
     const qty = e.target.qty.value;
     const status = e.target.status.value;
 
-    setFormData({
-      ...formData,
-      src,
-      category,
-      title,
-      description,
-      price,
-      brand,
-      qty,
-      status,
-    });
+    const imageLink = await uploadToCloudinary(src);
 
-    const payload = { id, title, src, category, description, price, brand, qty, status };
-
-    setFormData({
-      ...formData,
-      src,
-    });
-
-    console.log("formData: ", payload.src);
+    const payload = { id, title, src: imageLink, category, description, price, brand, qty, status };
 
     const handleEdit = async () => {
       try {
-        const response = await axios.put("http://localhost:8000/api/admin/products", payload);
-        // const editProduct=response.data;
-        // console.log("pro", response);
-        // console.log(response);
-        // const existingProduct = editProduct.find((product) => product._id === id);
-        // console.log(existingProduct);
-        // setProducts(existingProduct);
+        await axios.put("http://localhost:8000/api/admin/products", payload);
         setIsSubmitted(true);
       } catch (err) {
         console.log(err);
       }
     };
-
     handleEdit();
-
-    // console.log(" submitted:", products);
-    
-    // const updatedDelete = products.map((product) =>
-    //   product.id === id ? { ...product, ...formData } : product
-    // );
-    // setProducts(updatedDelete);
   };
 
   return (
@@ -97,7 +54,7 @@ const EditPage = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="image">Image URL:</label>
-            <input type="text" id="src" name="src" defaultValue={editproducts.src} required />
+            <input type="file" id="src" name="src" required />
           </div>
           <div className="form-group">
             <label htmlFor="category">Category:</label>
@@ -121,21 +78,19 @@ const EditPage = () => {
             <input type="number" id="price" name="price" required defaultValue={editproducts.price} />
           </div>
           <div className="form-group">
-            <label htmlFor="status" >
-              Status:
-            </label>
+            <label htmlFor="status">Status:</label>
             <select id="status" name="status" required defaultValue={editproducts.status}>
               <option value="popular">popular</option>
               <option value="nopopular">not popular</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="qty" >Quantity:</label>
+            <label htmlFor="qty">Quantity:</label>
             <input type="number" id="qty" name="qty" required defaultValue={editproducts.qty} />
           </div>
           <div className="form-group">
             <label htmlFor="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" required  defaultValue={editproducts.brand}/>
+            <input type="text" id="brand" name="brand" required defaultValue={editproducts.brand} />
           </div>
           <button type="submit" className="save-button">
             Save

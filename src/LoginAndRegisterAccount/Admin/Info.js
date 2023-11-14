@@ -20,8 +20,9 @@ const Info = () => {
   }, []);
 
   // if (orders.length === 0) {
-  //   window.location.replace("No orders for this user");
+  //   window.location.reload("No orders for this user");
   // }
+
   return (
     <>
       <div className="d-flex flex-column align-items-center pt-3 ">
