@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import "./logout.css";
+import "./cart.css";
+import "./signIn.css";
 import {
   MDBListGroupItem,
   MDBNavbar,
@@ -42,8 +45,8 @@ const Navbar = () => {
     setOrders,
     setSearch,
     token,
-    userId
-    
+    userId,
+    userName,
   } = useContext(userDataContext);
   const navigate = useNavigate();
 
@@ -56,7 +59,7 @@ const Navbar = () => {
     e.preventDefault();
     navigate("/babycare");
   };
-  
+
   const toFootWear = (e) => {
     e.preventDefault();
     navigate("/footwear");
@@ -82,15 +85,14 @@ const Navbar = () => {
           const response = await axios.get(`http://localhost:8000/api/user/${userID}/cart`);
           const mapData = response.data.data.cart;
           setOrders(mapData);
-          console.log("products",products);
+          console.log("products", products);
         } catch (error) {
           console.error(error);
         }
       }
     };
     userCartItems();
-  }, [isAuthenticated,userId,setOrders]);
-
+  }, [isAuthenticated, userId, setOrders]);
 
   return (
     <div>
@@ -159,8 +161,8 @@ const Navbar = () => {
             </MDBNavbarNav>
 
             <div className="fafa-div">
-              <MDBInputGroup className="search-bar ">
-                <MDBInput label="Search" onChange={(e) => setSearch(e.target.value)}>
+              <MDBInputGroup className="search-bar" >
+                <MDBInput label="Search" onChange={(e) => setSearch(e.target.value)} >
                   {search !== "" && (
                     <MDBListGroup
                       className="search-results"
@@ -182,7 +184,7 @@ const Navbar = () => {
                     >
                       {products
                         .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
-                        .map((item,index) => (
+                        .map((item, index) => (
                           <MDBListGroupItem
                             key={index}
                             onClick={() => {
@@ -201,28 +203,87 @@ const Navbar = () => {
                 </MDBBtn>
               </MDBInputGroup>
 
-              <a className="mx-3 icon" href=" ">
-                <Link to="/loginpage">
-                  <MDBIcon fas icon="user" className="fafa-icon" />
-                </Link>
-              </a>
-
-              {isAuthenticated && (
-                <a className="mx-2 shopping-cart" href=" ">
-                  <div onClick={handleCartClick}>
-                    {orders.length > 0 && (
-                      <MDBBadge color="danger" className="cart-notification" notification pill>
-                        {orders.length}
-                      </MDBBadge>
-                    )}
-                    <MDBIcon fas icon="shopping-cart mt-4" className="fafa-icon" />
-                  </div>   
+              {isAuthenticated ? (
+                <h9>{userName}</h9>
+              ) : (
+                <a className="mx-3 icon" href=" ">
+                  <Link to="/loginpage">
+                    <button className="submitBtn">
+                      Sign In
+                      <svg fill="white" viewBox="0 0 448 512" height="1em" className="arrow">
+                        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                      </svg>
+                    </button>
+                  </Link>
                 </a>
               )}
+
               {isAuthenticated && (
-                <MDBBtn className="me-1  logout-button" color="danger" onClick={logout}>
-                  Log out
-                </MDBBtn>
+                <button data-quantity="0" className="btn-cart custom-btn" onClick={handleCartClick}>
+                  <svg
+                    className="icon-cart"
+                    viewBox="0 0 24.38 30.52"
+                    height="30.52"
+                    width="24.38"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>icon-cart</title>
+                    <path
+                      transform="translate(-3.62 -0.85)"
+                      d="M28,27.3,26.24,7.51a.75.75,0,0,0-.76-.69h-3.7a6,6,0,0,0-12,0H6.13a.76.76,0,0,0-.76.69L3.62,27.3v.07a4.29,4.29,0,0,0,4.52,4H23.48a4.29,4.29,0,0,0,4.52-4ZM15.81,2.37a4.47,4.47,0,0,1,4.46,4.45H11.35a4.47,4.47,0,0,1,4.46-4.45Zm7.67,27.48H8.13a2.79,2.79,0,0,1-3-2.45L6.83,8.34h3V11a.76.76,0,0,0,1.52,0V8.34h8.92V11a.76.76,0,0,0,1.52,0V8.34h3L26.48,27.4a2.79,2.79,0,0,1-3,2.44Zm0,0"
+                    ></path>
+                  </svg>
+
+                  {orders.length > 0 && (
+                    <span
+                      className="cart-notification"
+                      style={{
+                        backgroundColor: "#dc3545",
+                        color: "#fff",
+                        borderRadius: "50%",
+                        fontSize: "9px",
+                        padding: "1.5px",
+                        position: "absolute",
+                        bottom: "25px",
+                        right: "6px",
+                        height: "35%",
+                        width: "35%",
+                      }}
+                    >
+                      {orders.length}
+                    </span>
+                  )}
+                </button>
+              )}
+
+              {/* {isAuthenticated && (
+                <a className="mx-2 shopping-cart" href=" " onClick={handleCartClick}>
+                  <div>
+                    {orders.length > 0 && (
+                      <span
+                        className="cart-notification"
+                        style={{ backgroundColor: "#dc3545", color: "#fff", borderRadius: "50%", padding: "5px" }}
+                      >
+                        {orders.length}
+                      </span>
+                    )}
+                    <i className="fas fa-shopping-cart mt-4 fafa-icon" />
+                  </div>
+                </a>
+              )} */}
+
+              {isAuthenticated && (
+                // <MDBBtn className="me-1  logout-button" color="danger" onClick={logout}>
+                //   Log out
+                // </MDBBtn>
+                <button className="Btn" onClick={logout}>
+                  <div className="sign">
+                    <svg viewBox="0 0 512 512">
+                      <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                  </div>
+                  <div className="text">Logout</div>
+                </button>
               )}
             </div>
           </MDBCollapse>

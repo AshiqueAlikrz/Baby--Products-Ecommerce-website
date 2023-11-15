@@ -30,6 +30,7 @@ const LoginPage = () => {
         const userId = responseUser.data.data;
         localStorage.setItem("jwt_token", userId.jwt_token);
         localStorage.setItem("id", userId.id);
+        localStorage.setItem("name", userId.name);
         setLoginUser(userId);
         setIsAuthenticated(true);
         navigate("/");
@@ -47,6 +48,11 @@ const LoginPage = () => {
     } else {
       alert("Invalid email or password");
     }
+
+    setTimeout(() => {
+      localStorage.clear();
+      setIsAuthenticated(false)
+    }, 3600000);
   };
 
   return (

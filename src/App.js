@@ -41,6 +41,7 @@ function App() {
   const [LoginUser, setLoginUser] = useState([]);
   const [orders, setOrders] = useState([]);
   const userId=localStorage.getItem('id');
+  const userName=localStorage.getItem('name');
 
 
 
@@ -96,7 +97,8 @@ function App() {
           setLoginUser,
           orders,
           setOrders,
-          userId
+          userId,
+          userName
         }}
       >
         <Routes>
