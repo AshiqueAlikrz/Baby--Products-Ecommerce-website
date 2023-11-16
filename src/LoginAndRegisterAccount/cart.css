@@ -33,7 +33,7 @@
   }
   
   .icon-cart path {
-    fill: rgb(240, 8, 8);
+    fill: rgb(0, 0, 0);
     transition: .2s linear;
   }
   

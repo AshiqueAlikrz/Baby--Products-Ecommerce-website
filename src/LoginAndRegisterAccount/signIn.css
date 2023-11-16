@@ -11,7 +11,8 @@
     font-weight: 600;
     cursor: pointer;
     color: white;
-    background: linear-gradient(to left,rgb(230, 35, 0),rgb(255, 174, 0));
+    background: #386BC0;
+    /* background: linear-gradient(to left,rgb(104, 0, 230),rgb(6, 8, 25)); */
     letter-spacing: 0.7px;
   }
   

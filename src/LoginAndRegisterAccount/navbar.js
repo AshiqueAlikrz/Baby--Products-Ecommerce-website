@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./logout.css";
 import "./cart.css";
 import "./signIn.css";
+import "./usericonnavbar.css";
 import {
   MDBListGroupItem,
   MDBNavbar,
@@ -96,7 +97,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <MDBNavbar expand="lg" className="py-5 " light>
+      <MDBNavbar expand="lg" className="py-5 main-navbar" light>
         <MDBContainer fluid className="container-text">
           <MDBNavbarToggler
             onClick={() => setShowBasic(!showBasic)}
@@ -161,8 +162,8 @@ const Navbar = () => {
             </MDBNavbarNav>
 
             <div className="fafa-div">
-              <MDBInputGroup className="search-bar" >
-                <MDBInput label="Search" onChange={(e) => setSearch(e.target.value)} >
+              <MDBInputGroup className="search-bar">
+                <MDBInput label="Search" onChange={(e) => setSearch(e.target.value)}>
                   {search !== "" && (
                     <MDBListGroup
                       className="search-results"
@@ -204,7 +205,20 @@ const Navbar = () => {
               </MDBInputGroup>
 
               {isAuthenticated ? (
-                <h9>{userName}</h9>
+                <button id="btn-message" class="button-message">
+                  <div class="content-avatar">
+                    <div class="status-user"></div>
+                    <div class="avatar">
+                      <svg class="user-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="notice-content">
+                    <div class="lable-message">{userName}</div>
+                    <div class="user-id">You are Logged In</div>
+                  </div>
+                </button>
               ) : (
                 <a className="mx-3 icon" href=" ">
                   <Link to="/loginpage">
@@ -217,6 +231,7 @@ const Navbar = () => {
                   </Link>
                 </a>
               )}
+             
 
               {isAuthenticated && (
                 <button data-quantity="0" className="btn-cart custom-btn" onClick={handleCartClick}>
@@ -255,22 +270,6 @@ const Navbar = () => {
                   )}
                 </button>
               )}
-
-              {/* {isAuthenticated && (
-                <a className="mx-2 shopping-cart" href=" " onClick={handleCartClick}>
-                  <div>
-                    {orders.length > 0 && (
-                      <span
-                        className="cart-notification"
-                        style={{ backgroundColor: "#dc3545", color: "#fff", borderRadius: "50%", padding: "5px" }}
-                      >
-                        {orders.length}
-                      </span>
-                    )}
-                    <i className="fas fa-shopping-cart mt-4 fafa-icon" />
-                  </div>
-                </a>
-              )} */}
 
               {isAuthenticated && (
                 // <MDBBtn className="me-1  logout-button" color="danger" onClick={logout}>
