@@ -44,7 +44,6 @@
         console.error("Error adding item to cart:", error);
       }
     };
-    console.log("orders", orders);
 
     return (
       <div>
