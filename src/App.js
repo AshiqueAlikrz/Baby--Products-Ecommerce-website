@@ -45,7 +45,7 @@ function App() {
 
 
 
-  // admin users
+  // admin all users 
 
   useEffect(() => {
     const fetchData = async () => {
