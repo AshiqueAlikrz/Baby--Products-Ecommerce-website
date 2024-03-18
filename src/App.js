@@ -1,36 +1,34 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "./LoginAndRegisterAccount/LoginPage";
-import RegisterAccount from "./LoginAndRegisterAccount/RegisterAccount";
-import Homepage from "./LoginAndRegisterAccount/Homepage";
-import ContactUs from "./LoginAndRegisterAccount/Contact";
-import About from "./LoginAndRegisterAccount/about";
-import AddCart from "./LoginAndRegisterAccount/AddCart";
-import ViewProduct from "./LoginAndRegisterAccount/ViewProduct";
-import Footer from "./LoginAndRegisterAccount/Footer";
+import LoginPage from "./pages/user/LoginPage";
+import RegisterAccount from "./pages/user/RegisterAccount";
+import Homepage from "./pages/user/Homepage";
+import ContactUs from "./pages/user/Contact";
+import About from "./pages/user/about";
+import AddCart from "./pages/user/AddCart";
+import ViewProduct from "./pages/user/ViewProduct";
+import Footer from "./components/Footer";
 import { useState } from "react";
-import { userDataContext } from "./userDataContext";
-import { productsDeatils } from "./LoginAndRegisterAccount/Products";
-import KidsCloths from "./LoginAndRegisterAccount/KidsCloths";
-import Babycare from "./LoginAndRegisterAccount/Babycare";
-import Footwear from "./LoginAndRegisterAccount/footwear";
-import Admin from "./LoginAndRegisterAccount/Admin/admin";
-import Sidebar from "./LoginAndRegisterAccount/Admin/mainplate";
-import SuccessAlert from "./LoginAndRegisterAccount/successAlert";
+import { userDataContext } from "./context/userDataContext";
+// import { productsDeatils } from "./LoginAndRegisterAccount/Products";
+import KidsCloths from "./components/KidsCloths";
+import Babycare from "./components/Babycare";
+import Footwear from "./components/footwear";
+import Admin from "./pages/admin/adminPage";
+import Sidebar from "./pages/admin/mainplate";
+import SuccessAlert from "./components/successAlert";
 import { useEffect } from "react";
 import axios from "axios";
 
-const token =localStorage.getItem('jwt_token');
+const token = localStorage.getItem("jwt_token");
 
-
-
-export const Axios=axios.create({
-  baseURL:process.env.REACT_APP_BASE_URL,
-  headers:{
+export const Axios = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}` 
+    Authorization: `Bearer ${token}`,
   },
-})
+});
 
 function App() {
   // const [cartItems, setCartItems] = useState([]);
@@ -40,12 +38,10 @@ function App() {
   const [users, setusers] = useState([]);
   const [LoginUser, setLoginUser] = useState([]);
   const [orders, setOrders] = useState([]);
-  const userId=localStorage.getItem('id');
-  const userName=localStorage.getItem('name');
+  const userId = localStorage.getItem("id");
+  const userName = localStorage.getItem("name");
 
-
-
-  // admin all users 
+  // admin all users
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,7 +61,7 @@ function App() {
     const fetchData = async () => {
       try {
         const productData = await Axios.get("/api/admin/products");
-        token ? setIsAuthenticated(true) : setIsAuthenticated(false)
+        token ? setIsAuthenticated(true) : setIsAuthenticated(false);
         setProducts(productData.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -82,7 +78,7 @@ function App() {
     <div className="App">
       <userDataContext.Provider
         value={{
-          productsDeatils,
+          // productsDeatils,
           // cartItems,
           // setCartItems,
           isAuthenticated,
@@ -98,7 +94,7 @@ function App() {
           orders,
           setOrders,
           userId,
-          userName
+          userName,
         }}
       >
         <Routes>

@@ -9,7 +9,6 @@
     --inline-padding-of-input: 1.2em;
     --gap: 0.9rem;
   }
-  /* form style */
   .form {
     font-size: 0.9rem;
     display: flex;
@@ -20,7 +19,6 @@
     isolation: isolate;
 
   }
-  /* a fancy bg for showing background and border when focus. */
   .fancy-bg {
     position: absolute;
     width: 100%;
@@ -32,7 +30,6 @@
     pointer-events: none;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
-  /* label styling */
   label {
     width: 100%;
     padding: 0.8em;
@@ -45,17 +42,14 @@
   .search,.close-btn {
     position: absolute;
   }
-  /* styling search-icon */
   .search {
     fill: var(--text-color);
     left: var(--inline-padding-of-input);
   }
-  /* svg -- size */
   svg {
     width: 17px;
     display: block;
   }
-  /* styling of close button */
   .close-btn {
     border: none;
     right: var(--inline-padding-of-input);
@@ -72,7 +66,6 @@
     opacity: 0;
     visibility: hidden;
   }
-  /* styling of input */
   .input {
     color: var(--input-text-color);
     width: 100%;
@@ -88,21 +81,17 @@
   .input::placeholder {
     color: var(--text-color)
   }
-  /* input background change in focus */
   .input:focus ~ .fancy-bg {
     border: 1px solid var(--active-color);
     background: var(--focus-input-bg-color);
   }
-  /* search icon color change in focus */
   .input:focus ~ .search {
     fill: var(--active-color);
   }
-  /* showing close button when typing */
   .input:valid ~ .close-btn {
     opacity: 1;
     visibility: visible;
   }
-  /* this is for the default background in input,when selecting autofill options -- you can remove this code if you do not want to override the browser style.  */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

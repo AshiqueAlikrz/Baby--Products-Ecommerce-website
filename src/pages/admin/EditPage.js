@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { userDataContext } from "../../userDataContext";
-import "./edit.css";
+import { userDataContext } from "../../context/userDataContext";
+import "../../styles/edit.css";
 import axios from "axios";
-import uploadToCloudinary from "./utils/cloudinary";
+import uploadToCloudinary from "../../utils/cloudinary";
 
 const EditPage = () => {
   const { products } = useContext(userDataContext);

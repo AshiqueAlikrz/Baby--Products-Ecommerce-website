@@ -2,7 +2,7 @@ import React from "react";
 import { MDBContainer, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCard, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { userDataContext } from "../userDataContext";
+import { userDataContext } from "../context/userDataContext";
 
 const MostPopular = () => {
   const { products } = useContext(userDataContext);

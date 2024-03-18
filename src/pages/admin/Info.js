@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MDBIcon } from "mdb-react-ui-kit";
-import { userDataContext } from "../../userDataContext";
+import { userDataContext } from "../../context/userDataContext";
 import { useParams } from "react-router-dom";
-import "./Info.css";
+import "../../styles/Info.css";
 import axios from "axios";
 
 const Info = () => {

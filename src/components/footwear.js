@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { userDataContext } from "../userDataContext";
+import { userDataContext } from "../context/userDataContext";
 import { useNavigate } from "react-router-dom";
 import { MDBContainer, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCard, MDBCol, MDBRow } from "mdb-react-ui-kit";
 

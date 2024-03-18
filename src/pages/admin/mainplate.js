@@ -1,9 +1,9 @@
 import React from "react";
-import "./Admin.css";
+import "../../styles/Admin.css";
 import {  MDBIcon } from "mdb-react-ui-kit";
 import User from "./user";
 import AdminProducts from "./adminProducts";
-import AddProdcuts from "./addProdcuts";
+import AddProdcuts from "../../pages/admin/addProdcuts";
 import EditPage from "./EditPage";
 import Info from "./Info";
 import { useLocation } from "react-router-dom";

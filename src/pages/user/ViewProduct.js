@@ -1,13 +1,13 @@
   import React, { useContext, useEffect, useState } from "react";
-  import "./viewproducts.css";
+  import "../../styles/viewproducts.css";
   import { MDBIcon } from "mdb-react-ui-kit";
-  import Navbar from "./navbar";
+  import Navbar from "../../components/navbar";
   import { useParams } from "react-router-dom";
-  import "./Style.css";
-  import Footer from "./Footer";
-  import { userDataContext } from "../userDataContext";
+  import "../../styles/Style.css";
+  import Footer from "../../components/Footer";
+  import { userDataContext } from "../../context/userDataContext";
   import { useNavigate } from "react-router-dom";
-  import { Axios } from "../App";
+  import { Axios } from "../../App";
 
   const ViewProduct = () => {
     const { isAuthenticated, userId, orders, setOrders } = useContext(userDataContext);

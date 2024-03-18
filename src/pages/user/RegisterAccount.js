@@ -1,5 +1,5 @@
 // import React, { useContext, useState } from "react";
-import "./Style.css";
+import "../../styles/Style.css"
 import axios from "axios";
 import {
   MDBBtn,
@@ -8,10 +8,10 @@ import {
   MDBCol,
   MDBInput,
 } from "mdb-react-ui-kit";
-import BabyImage from "./attachment_87322237-removebg-preview.png";
+import BabyImage from "../../assets/attachment_87322237-removebg-preview.png";
 import { Link } from "react-router-dom";
-import Navbar from "./navbar";
-import { Axios } from "../App";
+import Navbar from "../../components/navbar";
+import { Axios } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 
@@ -37,13 +37,11 @@ const RegisterAccount = () => {
 
     
 
-      console.log(payload);
       try {
         const response = await Axios.post(
           "/api/user/register",
           payload
         );  
-        console.log(response);
         alert("Account registered successfully");
         navigate('/loginpage');
       } catch (err) {

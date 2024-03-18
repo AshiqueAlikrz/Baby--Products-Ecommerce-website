@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import "./logout.css";
-import "./cart.css";
-import "./signIn.css";
-import "./usericonnavbar.css";
+import "../styles/logout.css";
+import "../styles/cart.css";
+import "../styles/signIn.css";
+import "../styles/usericonnavbar.css";
 import {
   MDBListGroupItem,
   MDBNavbar,
@@ -24,12 +24,12 @@ import {
   MDBDropdownItem,
   MDBListGroup,
 } from "mdb-react-ui-kit";
-import "./Style.css";
+import "../styles/Style.css";
 import { Link } from "react-router-dom";
-import Babyimage from "./attachment_87322237-removebg-preview.png";
+import Babyimage from "../assets/attachment_87322237-removebg-preview.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { userDataContext } from "../userDataContext";
+import { userDataContext } from "../context/userDataContext";
 import { useEffect } from "react";
 import axios from "axios";
 

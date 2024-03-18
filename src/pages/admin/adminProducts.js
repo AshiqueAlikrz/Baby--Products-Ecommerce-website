@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./product.css";
+import "../../styles/product.css";
 import { useContext, useEffect } from "react";
-import { userDataContext } from "../../userDataContext";
+import { userDataContext } from "../../context/userDataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -40,7 +40,6 @@ const AdminProducts = () => {
 
   const filteredProducts =
     selectedCategory === "All" ? products : products.filter((product) => product.category === selectedCategory);
-  // console.log("filteredProducts",filteredProducts);
   return (
     <div>
       <div className="scroll-container">

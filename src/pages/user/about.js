@@ -1,8 +1,8 @@
 import React from 'react'
-import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
-import "./Style.css"
-import Navbar from './navbar';
-import Footer from './Footer'
+// import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
+import "../../styles/Style.css"
+import Navbar from '../../components/navbar';
+import Footer from '../../components/Footer'
 
 
 

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import "./Style.css";
+import "../../styles/Style.css";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
-import BabyImage from "./attachment_87322237-removebg-preview.png";
+import BabyImage from "../../assets/attachment_87322237-removebg-preview.png";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./navbar";
-import Footer from "./Footer";
-import { userDataContext } from "../userDataContext";
-import { Axios } from "../App";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/Footer";
+import { userDataContext } from "../../context/userDataContext";
+import { Axios } from "../../App";
 
 const LoginPage = () => {
   const { setIsAuthenticated, setLoginUser } = useContext(userDataContext);
@@ -22,7 +22,6 @@ const LoginPage = () => {
     const password = e.target.password.value.trim();
 
     const payload = { email, password };
-    console.log(payload);
 
     if (payload) {
       try {
@@ -31,7 +30,6 @@ const LoginPage = () => {
         localStorage.setItem("jwt_token", userId.jwt_token);
         localStorage.setItem("id", userId.id);
         localStorage.setItem("name", userId.name);
-        setLoginUser(userId);
         setIsAuthenticated(true);
         navigate("/");
         alert("User login successful");
@@ -51,7 +49,7 @@ const LoginPage = () => {
 
     setTimeout(() => {
       localStorage.clear();
-      setIsAuthenticated(false)
+      setIsAuthenticated(false);
     }, 3600000);
   };
 

@@ -12,12 +12,12 @@ import {
   MDBTypography,
   MDBCardText,
 } from "mdb-react-ui-kit";
-import Navbar from "./navbar";
-import Footer from "./Footer";
-import { userDataContext } from "../userDataContext";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/Footer";
+import { userDataContext } from "../../context/userDataContext";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { Axios } from "../App";
+import { Axios } from "../../App";
 
 const AddCart = () => {
   const { setOrders, orders, LoginUser,userId } = useContext(userDataContext);

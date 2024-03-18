@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./paymentSucess.css";
-import "./loader.css";
+import "../styles/paymentSucess.css";
+import "../styles/loader.css";
 import { useNavigate } from "react-router-dom";
 
 const SuccessAlert = () => {

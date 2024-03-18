@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "./user.css";
-import { useContext, useState } from "react";
-import { userDataContext } from "../../userDataContext";
+import "../../styles/user.css";
+import { useContext } from "react";
+import { userDataContext } from "../../context/userDataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -14,7 +14,6 @@ const User = () => {
     const fetchData = async () => {
       try {
         const userData = await axios.get( "http://localhost:8000/api/admin/users");
-        // console.log("userData", userData);
         setusers(userData.data.data);
      console.log("adminusers",users);
       } catch (error) {
@@ -22,7 +21,7 @@ const User = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [users]);
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Admin.css";
-import Sidebar from "./mainplate";
-
+import "../../styles/Admin.css";
+import Sidebar from "../admin/mainplate";
+// import Sidebar from "../Admin/mainplate";
 
 const Admin = () => {
   return (
@@ -10,5 +10,6 @@ const Admin = () => {
     </div>
   );
 };
+
 
 export default Admin;

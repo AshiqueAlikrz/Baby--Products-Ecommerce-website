@@ -1,7 +1,7 @@
 import React from "react";
-import "./Style.css";
+import "../../styles/Style.css";
 import Carousel from "react-bootstrap/Carousel";
-import Navbar from "./navbar";
+import Navbar from "../../components/navbar";
 import {
   MDBContainer,
   MDBIcon,
@@ -14,8 +14,8 @@ import {
   MDBRow,
   MDBFooter,
 } from "mdb-react-ui-kit";
-import MainProducts from "./MainProducts";
-import MostPopular from "./MostPopular";
+import MainProducts from "../../components/MainProducts";
+import MostPopular from "../../components/MostPopular";
 
 const Homepage = () => {
   return (

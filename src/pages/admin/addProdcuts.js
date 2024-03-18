@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import "./addproducts.css";
+import "../../styles/addproducts.css";
 import { Axios } from "../../App";
 import axios from "axios";
-import uploadToCloudinary from "./utils/cloudinary";
+import uploadToCloudinary from "../../utils/cloudinary";
 
 const AddProdcuts = () => {
   
