@@ -10,7 +10,7 @@ import {
 } from "mdb-react-ui-kit";
 import BabyImage from "../../assets/attachment_87322237-removebg-preview.png";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar2";
 import { Axios } from "../../App";
 import { useNavigate } from "react-router-dom";
 

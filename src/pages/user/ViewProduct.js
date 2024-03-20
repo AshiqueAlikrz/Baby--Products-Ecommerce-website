@@ -1,7 +1,7 @@
   import React, { useContext, useEffect, useState } from "react";
   import "../../styles/viewproducts.css";
   import { MDBIcon } from "mdb-react-ui-kit";
-  import Navbar from "../../components/navbar";
+  import Navbar from "../../components/navbar2";
   import { useParams } from "react-router-dom";
   import "../../styles/Style.css";
   import Footer from "../../components/Footer";

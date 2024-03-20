@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDBInput, MDBBtn ,MDBTextArea, MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon} from 'mdb-react-ui-kit';
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/navbar2'
 
 const Contact = () => {
   return (

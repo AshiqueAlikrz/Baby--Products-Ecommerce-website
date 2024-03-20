@@ -223,14 +223,14 @@ body {
 .nav-first {
   width: auto;
   height: 25px;
-  background-color: rgb(255, 255, 0);
+  background-color: rgb(0, 0, 0);
 }
 
 .carousel-text {
   font-size: 13px;
   font-weight: bold;
   text-align: center;
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 453px) {

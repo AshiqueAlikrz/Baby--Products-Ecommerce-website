@@ -3,10 +3,11 @@ import "../../styles/Style.css";
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput } from "mdb-react-ui-kit";
 import BabyImage from "../../assets/attachment_87322237-removebg-preview.png";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar2";
 import Footer from "../../components/Footer";
 import { userDataContext } from "../../context/userDataContext";
 import { Axios } from "../../App";
+import {  toast } from "react-toastify";
 
 const LoginPage = () => {
   const { setIsAuthenticated, setLoginUser } = useContext(userDataContext);
@@ -32,7 +33,7 @@ const LoginPage = () => {
         localStorage.setItem("name", userId.name);
         setIsAuthenticated(true);
         navigate("/");
-        alert("User login successful");
+        toast.success("User login successful");
       } catch (errorUser) {
         try {
           await Axios.post("/api/admin/login", payload);

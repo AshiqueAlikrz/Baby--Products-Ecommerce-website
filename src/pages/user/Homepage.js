@@ -1,7 +1,8 @@
 import React from "react";
 import "../../styles/Style.css";
 import Carousel from "react-bootstrap/Carousel";
-import Navbar from "../../components/navbar";
+// import Navbar from "../../components/navbar";
+import Navbar from '../../components/navbar'
 import {
   MDBContainer,
   MDBIcon,
@@ -60,7 +61,7 @@ const Homepage = () => {
         </MDBCarousel>
       </section>
 
-      <MainProducts />
+      <MainProducts style={{backgroundColor:"black"}}/>
 
       <section>
   <h1 className="arrival-head">Why They Loving Us</h1>

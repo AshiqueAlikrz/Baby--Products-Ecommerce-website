@@ -1,0 +1,81 @@
+.navbar-main-div {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: #000000f1;
+}
+
+.navbar-div {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  width: 95vw;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.733);
+}
+
+.navbar-list-name ul {
+  list-style: none;
+  height: 70px;
+  width: 35vw;
+  background-color: #fff;
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.navbar-icons-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 70px;
+  width: 35vw;
+  background-color: #fff;
+}
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 25vw;
+  background-color: #fff;
+}
+.ShoppingCartIcon {
+  height: 40px;
+  width: 30px;
+}
+.ShoppingCartLogo {
+  height: 80px;
+  width: 70px;
+  margin-left: 14px;
+  filter: brightness(0);
+}
+
+.nav-icons-subdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  width: 8vw;
+}
+
+/* search bar */
+
+.navbar-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 20vw;
+}
+
+.nav-notification-icon{
+  position: absolute;
+  margin-left: 13px;
+  height: 20px;
+  width: 20px;
+}
