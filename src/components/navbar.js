@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/navbar.css";
-import NumberNotification from "../assets/icons/pngtree-circle-clipart-red-circle-png-image_2381952-removebg-preview.png";
 import ShoppingCartLogo from "../assets/logo/krzlogo.png";
 import { CiHeart } from "react-icons/ci";
 import { PiUserCircleLight } from "react-icons/pi";
 import { BsCart } from "react-icons/bs";
 import Searchbar from "./searchBar";
+import DropdownPage from "../components/dropDown";
 
 const navbar = () => {
   return (
@@ -30,16 +30,23 @@ const navbar = () => {
           </div>
 
           <div className="nav-icons-subdiv">
+
             <div>
-              <img src={NumberNotification} className="nav-notification-icon" alt="reload" />
+              <div className="notification-round">
+                <p className="nav-notification-icon-number">1</p>
+              </div>
               <CiHeart className="ShoppingCartIcon" />
             </div>
+
             <div>
-              <img src={NumberNotification} className="nav-notification-icon" alt="reload" />
+              <div className="notification-round">
+                <p className="nav-notification-icon-number">13</p>
+              </div>
               <BsCart className="ShoppingCartIcon" />
             </div>
+
             <div>
-              <PiUserCircleLight className="ShoppingCartIcon" />
+              <DropdownPage icon={<PiUserCircleLight />} style="ShoppingCartIcon" />
             </div>
           </div>
         </div>

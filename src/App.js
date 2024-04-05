@@ -20,6 +20,7 @@ import SuccessAlert from "./components/successAlert";
 import { useEffect } from "react";
 import axios from "axios";
 
+
 const token = localStorage.getItem("jwt_token");
 
 export const Axios = axios.create({

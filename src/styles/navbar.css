@@ -73,9 +73,29 @@
   width: 20vw;
 }
 
-.nav-notification-icon{
+.nav-notification-icon {
   position: absolute;
   margin-left: 13px;
   height: 20px;
   width: 20px;
+}
+
+.nav-notification-icon-number {
+  position: relative;
+  font-size: xx-small;
+  color: #fff;
+  top: 7px;
+}
+
+.notification-round {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 13px;
+  height: 19px;
+  padding: 7px;
+  width: auto;
+  background-color: red;
+  border-radius: 50%;
 }

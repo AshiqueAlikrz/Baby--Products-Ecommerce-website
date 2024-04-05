@@ -1,0 +1,13 @@
+.popular-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.popular-image {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
