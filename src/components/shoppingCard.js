@@ -5,6 +5,7 @@ import "../styles/popularItems.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -61,6 +62,11 @@ const ShopppingCard = ({ popularProducts }) => {
             </div>
           ))}
         </Slider>
+        <div className="card-button-container">
+          <Link to="/showmoreproducts" className="card-button">
+            Show more
+          </Link>
+        </div>
       </div>
     </>
   );

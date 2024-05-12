@@ -10,6 +10,7 @@ import { TbDiscount } from "react-icons/tb";
 const OurServices = () => {
   return (
     <div>
+        <h1>Our Services</h1>
       <div className="service-container">
         <div className="service-subcontainer">
           <MdOutlineLocalShipping className="service-icon" />

@@ -6,8 +6,6 @@ import { userDataContext } from "../context/userDataContext";
 import ShopppingCard from "./shoppingCard";
 import "../styles/popularItems.css";
 
-
-
 const MainProducts = () => {
   const { products } = useContext(userDataContext);
   // console.log("main products",products);
@@ -18,10 +16,10 @@ const MainProducts = () => {
 
   return (
     <div>
-      <div className="newproducts-title1-container">
-      <h1 className="newproducts-title1">Our products</h1>
+      <div className="newproducts-title1-container" >
+        <h1 className="newproducts-title1">Our products</h1>
       </div>
-        <ShopppingCard popularProducts={MainProducts} />
+      <ShopppingCard popularProducts={MainProducts} />
     </div>
   );
 };

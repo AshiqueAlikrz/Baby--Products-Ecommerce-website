@@ -17,6 +17,7 @@ import Footwear from "./components/footwear";
 import Admin from "./pages/admin/adminPage";
 import Sidebar from "./pages/admin/mainplate";
 import SuccessAlert from "./components/successAlert";
+import ShowMoreProducts from "./components/showMoreProducts";
 import { useEffect } from "react";
 import axios from "axios";
 import { userLogin, Category, category } from "./assets/dropDownData/dropDown";
@@ -146,6 +147,7 @@ function App() {
           <Route path="/editpage/:id" element={<Sidebar />} />
           <Route path="/info/:id/:name/:email" element={<Sidebar />} />
           <Route path="/payment/success" element={<SuccessAlert />} />
+          <Route path="/showmoreproducts" element={<ShowMoreProducts />} />
         </Routes>
       </userDataContext.Provider>
     </div>

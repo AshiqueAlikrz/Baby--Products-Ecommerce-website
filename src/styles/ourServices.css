@@ -1,5 +1,6 @@
 .service-container {
-  padding: 20px;
+  /* margin:20px; */
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
