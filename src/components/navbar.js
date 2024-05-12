@@ -6,8 +6,18 @@ import { PiUserCircleLight } from "react-icons/pi";
 import { BsCart } from "react-icons/bs";
 import Searchbar from "./searchBar";
 import DropdownPage from "../components/dropDown";
+import { userDataContext } from "../context/userDataContext";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ChangeUserLoginBgColor } from "../common functions/loginUserBgChange";
 
-const navbar = () => {
+const Navbar = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated, userName, userLogout, userLogin, category } = useContext(userDataContext);
+  const userLetter = userName?.slice(0, 1);
+  const loginUserName = localStorage.getItem("username");
+  const loginUserBgColor = ChangeUserLoginBgColor(loginUserName);
+
   return (
     <div className="navbar-main-div">
       <div className="navbar-div">
@@ -16,12 +26,12 @@ const navbar = () => {
         </div>
         <div className="navbar-list-name">
           <ul>
-            <li>Home</li>
+            <li onClick={() => navigate("/")}>Home</li>
             <li>Shop</li>
-            <li>Category</li>
-            <li>Blog</li>
-            <li>Pages</li>
-            <li>Contact</li>
+            <li>
+              <DropdownPage icon="Category" items={category} />
+            </li>
+            <li onClick={() => navigate("/contactus")}>Contact</li>
           </ul>
         </div>
         <div className="navbar-icons-div">
@@ -30,7 +40,6 @@ const navbar = () => {
           </div>
 
           <div className="nav-icons-subdiv">
-
             <div>
               <div className="notification-round">
                 <p className="nav-notification-icon-number">1</p>
@@ -46,7 +55,11 @@ const navbar = () => {
             </div>
 
             <div>
-              <DropdownPage icon={<PiUserCircleLight />} style="ShoppingCartIcon" />
+              {isAuthenticated ? (
+                <DropdownPage icon={userLetter} style="nav-loginuserbg" items={userLogout} bgColor={loginUserBgColor} />
+              ) : (
+                <DropdownPage icon={<PiUserCircleLight />} style="ShoppingCartIcon" items={userLogin} bgColor="transparent" />
+              )}
             </div>
           </div>
         </div>
@@ -55,4 +68,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

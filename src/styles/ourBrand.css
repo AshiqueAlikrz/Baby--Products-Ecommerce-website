@@ -1,0 +1,15 @@
+.brand-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: auto;
+    height: 200px;
+    background-color: rgb(0, 0, 0);
+}
+
+.brand-icon{
+    height: 100px;
+    width: 100px;
+    color: white;
+
+}

@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/user/LoginPage";
 import RegisterAccount from "./pages/user/RegisterAccount";
 import Homepage from "./pages/user/Homepage";
@@ -19,7 +19,7 @@ import Sidebar from "./pages/admin/mainplate";
 import SuccessAlert from "./components/successAlert";
 import { useEffect } from "react";
 import axios from "axios";
-
+import { userLogin, Category, category } from "./assets/dropDownData/dropDown";
 
 const token = localStorage.getItem("jwt_token");
 
@@ -71,17 +71,43 @@ function App() {
     fetchData();
   }, []);
 
-  // getting orders
+  //user Logout List
+  const HandleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.clear();
+  };
 
-  //
+  const userLogout = [
+    {
+      key: "1",
+      label: (
+        <Link to="/" onClick={HandleLogout}>
+          Logout
+        </Link>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Link to="/" onClick={HandleLogout}>
+          My orders
+        </Link>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <Link to="/" onClick={HandleLogout}>
+          Settings
+        </Link>
+      ),
+    },
+  ];
 
   return (
     <div className="App">
       <userDataContext.Provider
         value={{
-          // productsDeatils,
-          // cartItems,
-          // setCartItems,
           isAuthenticated,
           setIsAuthenticated,
           search,
@@ -96,6 +122,9 @@ function App() {
           setOrders,
           userId,
           userName,
+          userLogout,
+          userLogin,
+          category,
         }}
       >
         <Routes>

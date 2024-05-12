@@ -2,21 +2,12 @@ import React from "react";
 import "../../styles/Style.css";
 import Carousel from "react-bootstrap/Carousel";
 // import Navbar from "../../components/navbar";
-import Navbar from '../../components/navbar'
-import {
-  MDBContainer,
-  MDBIcon,
-  MDBCarousel,
-  MDBCarouselItem,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCard,
-  MDBCol,
-  MDBRow,
-  MDBFooter,
-} from "mdb-react-ui-kit";
+import Navbar from "../../components/navbar";
+import { MDBContainer, MDBIcon, MDBCarousel, MDBCarouselItem, MDBCardBody, MDBCardImage, MDBCard, MDBCol, MDBRow, MDBFooter } from "mdb-react-ui-kit";
 import MainProducts from "../../components/MainProducts";
 import MostPopular from "../../components/MostPopular";
+import OurBrands from "../../components/ourBrands";
+import OurServices from "../../components/ourServices";
 
 const Homepage = () => {
   return (
@@ -61,47 +52,36 @@ const Homepage = () => {
         </MDBCarousel>
       </section>
 
-      <MainProducts style={{backgroundColor:"black"}}/>
+      <MainProducts style={{ backgroundColor: "black" }} />
+      <OurBrands />
 
       <section>
-  <h1 className="arrival-head">Why They Loving Us</h1>
-  <div className="review-div">
-    <img
-      className="review-image"
-      src="http://www.pngall.com/wp-content/uploads/2018/03/Child-PNG-Image.png"
-      alt="Happy Child"
-    />
-    <h3 className="review-para">
-      " This is the very good quality products. I hd ordered running shoes they delivered low quality. But in the
-      picture look like very good item, I used with in one month shoes broke. customer service and delivery is
-      good. It's ok "
-    </h3>
-    <img
-      className="five-star"
-      src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
-      alt="Five Star Rating"
-    />
-  </div>
+        <h1 className="arrival-head">Why They Loving Us</h1>
+        <div className="review-div">
+          <img className="review-image" src="http://www.pngall.com/wp-content/uploads/2018/03/Child-PNG-Image.png" alt="Happy Child" />
+          <h3 className="review-para">
+            " This is the very good quality products. I hd ordered running shoes they delivered low quality. But in the picture look like very good item, I used with in one month shoes broke. customer
+            service and delivery is good. It's ok "
+          </h3>
+          <img
+            className="five-star"
+            src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
+            alt="Five Star Rating"
+          />
+        </div>
 
-  <div className="review-div2">
-    <img
-      className="review-image2"
-      src="http://www.sproutpeds.com/wp-content/uploads/revslider/fable/slider_slide2_img1.png"
-      alt="Happy Child"
-    />
-    <h3 className="review-para2">
-      " Very good products for buying baby products and i got better quality items from this.Good customer service
-      and higly discound by ordering od combo items "
-    </h3>
-    <img
-      className="five-star2"
-      src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
-      alt="Five Star Rating"
-    />
-  </div>
-</section>
+        <div className="review-div2">
+          <img className="review-image2" src="http://www.sproutpeds.com/wp-content/uploads/revslider/fable/slider_slide2_img1.png" alt="Happy Child" />
+          <h3 className="review-para2">" Very good products for buying baby products and i got better quality items from this.Good customer service and higly discound by ordering od combo items "</h3>
+          <img
+            className="five-star2"
+            src="https://imgs.search.brave.com/wwBw84FYY_jMMgJc-s2h7GU93cZPaLqgOhjnp4HA0u8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/cG5nYWxsLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvNC81LVN0/YXItUmF0aW5nLVRy/YW5zcGFyZW50LnBu/Zw"
+            alt="Five Star Rating"
+          />
+        </div>
+      </section>
 
-
+      <OurServices />
       <MostPopular />
 
       <MDBCard className="mb-4 -lg-0">
@@ -109,30 +89,10 @@ const Homepage = () => {
           <p>
             <strong>We accept</strong>
           </p>
-          <MDBCardImage
-            className="me-2"
-            width="45px"
-            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-            alt="Visa"
-          />
-          <MDBCardImage
-            className="me-2"
-            width="45px"
-            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-            alt="American Express"
-          />
-          <MDBCardImage
-            className="me-2"
-            width="45px"
-            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-            alt="Mastercard"
-          />
-          <MDBCardImage
-            className="me-2"
-            width="45px"
-            src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-            alt="PayPal acceptance mark"
-          />
+          <MDBCardImage className="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg" alt="Visa" />
+          <MDBCardImage className="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg" alt="American Express" />
+          <MDBCardImage className="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg" alt="Mastercard" />
+          <MDBCardImage className="me-2" width="45px" src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png" alt="PayPal acceptance mark" />
         </MDBCardBody>
       </MDBCard>
 
@@ -173,10 +133,7 @@ const Homepage = () => {
                     <MDBIcon icon="gem" className="me-3" />
                     LOVED BABY PRODUCTS
                   </h6>
-                  <p>
-                    Here you can use rows and columns to organize your footer content.dolor sit amet, consectetur
-                    adipisicing elit.
-                  </p>
+                  <p>Here you can use rows and columns to organize your footer content.dolor sit amet, consectetur adipisicing elit.</p>
                 </MDBCol>
 
                 <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
@@ -206,24 +163,16 @@ const Homepage = () => {
                 <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
                   <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
                   <p>
-                    <a  className="text-reset">
-                      Pricing
-                    </a>
+                    <a className="text-reset">Pricing</a>
                   </p>
                   <p>
-                    <a className="text-reset">
-                      Settings
-                    </a>
+                    <a className="text-reset">Settings</a>
                   </p>
                   <p>
-                    <a className="text-reset">
-                      Orders
-                    </a>
+                    <a className="text-reset">Orders</a>
                   </p>
                   <p>
-                    <a  className="text-reset">
-                      Help
-                    </a>
+                    <a className="text-reset">Help</a>
                   </p>
                 </MDBCol>
 

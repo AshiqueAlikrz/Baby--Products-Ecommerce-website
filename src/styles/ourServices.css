@@ -1,0 +1,30 @@
+.service-container {
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: auto;
+  height: 200px;
+}
+.service-subcontainer {
+  height: 80%;
+  width: auto;
+}
+
+.service-icon {
+  height: 80px;
+  width: 80px;
+  color: black;
+}
+
+.service-heading {
+    margin: 10px;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+}
+
+.service-subheading {
+  color: black;
+  font-size: smaller;
+}

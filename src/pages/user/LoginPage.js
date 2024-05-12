@@ -27,14 +27,17 @@ const LoginPage = () => {
     if (payload) {
       try {
         const responseUser = await Axios.post("/api/user/login", payload);
-        const userId = responseUser.data.data;
-        localStorage.setItem("jwt_token", userId.jwt_token);
-        localStorage.setItem("id", userId.id);
-        localStorage.setItem("name", userId.name);
+        console.log(responseUser);
+        const userData = responseUser.data.data;
+        localStorage.setItem("jwt_token", userData.jwt_token);
+        localStorage.setItem("id", userData.id);
+        localStorage.setItem("name", userData.name);
+        localStorage.setItem("username", userData.username);
+
         setIsAuthenticated(true);
         navigate("/");
-        toast.success("User login successful");
-      } catch (errorUser) {
+        toast.success(responseUser.data.message);
+      } catch (errorUser) { 
         try {
           await Axios.post("/api/admin/login", payload);
           alert("Admin logging successful");

@@ -1,12 +1,16 @@
 .navbar-main-div {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70px;
   width: 100%;
   background-color: #000000f1;
+}
+
+* {
+  font-family: sans-serif;
 }
 
 .navbar-div {
@@ -47,6 +51,7 @@
 .ShoppingCartIcon {
   height: 40px;
   width: 30px;
+  cursor: pointer;
 }
 .ShoppingCartLogo {
   height: 80px;
@@ -98,4 +103,16 @@
   width: auto;
   background-color: red;
   border-radius: 50%;
+}
+
+.nav-loginuserbg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  font-size: x-large;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
 }
