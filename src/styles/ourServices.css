@@ -1,11 +1,11 @@
 .service-container {
   /* margin:20px; */
-  padding: 10px;
+  padding: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: auto;
-  height: 200px;
+  height: 250px;
 }
 .service-subcontainer {
   height: 80%;

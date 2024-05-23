@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/navbar.css";
 import ShoppingCartLogo from "../assets/logo/krzlogo.png";
 import { CiHeart } from "react-icons/ci";
@@ -18,9 +18,23 @@ const Navbar = () => {
   const loginUserName = localStorage.getItem("username");
   const loginUserBgColor = ChangeUserLoginBgColor(loginUserName);
 
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 100);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, visible]);
+
   return (
     <div className="navbar-main-div">
-      <div className="navbar-div">
+      <div className={`navbar-div ${visible ? "visible" : "hidden"}`}>
         <div className="navbar-logo">
           <img src={ShoppingCartLogo} className="ShoppingCartLogo" alt=""></img>
         </div>

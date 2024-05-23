@@ -1,13 +1,16 @@
 .navbar-main-div {
   position: relative;
+  transition: top 0.5s;
+  top: 0;
   z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 90px;
   width: 100%;
-  background-color: #000000f1;
+  /* background-color: #000000; */
 }
+
 
 * {
   font-family: sans-serif;
@@ -15,11 +18,16 @@
 
 .navbar-div {
   position: fixed;
+  transition: top 0.5s;
+  top: 33px;
   display: flex;
   justify-content: space-between;
   height: 70px;
   width: 95vw;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.733);
+}
+.navbar-div.hidden {
+  top: -110px; /* Move the navbar up to hide */
 }
 
 .navbar-list-name ul {

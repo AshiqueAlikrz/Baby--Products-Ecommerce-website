@@ -4,24 +4,30 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import ShopppingCard from "./shoppingCard";
 import { userDataContext } from "../context/userDataContext";
-import CardDesign from "./cardDesign";
+import CardDesign from "./cardDesign";  
 const { Content, Footer, Sider } = Layout;
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
+const items2 = ["Price", "Brand", "Colour"].map((item, index) => {
   const key = String(index + 1);
-
   return {
     key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
+    label: item,
+    children: new Array(1)
+      .fill(null)
+      .map((_, j) => {
+        const arrayItems = [
+          ["Below 500", "500 - 1000", "1000 - 2000", "2000 - 3000", "3000 - 4000"],
+          ["Puma", "Zara", "Addidas", "Allen Solly"],
+          ["Red", "Blue", "Orange", "Yellow", "Green", "White", "Black"],
+        ];
+        const num = 0 + index;
+        return arrayItems[num].map((label, k) => {
+          return {
+            label: label,
+          };
+        });
+      })
+      .flat(),
   };
 });
 

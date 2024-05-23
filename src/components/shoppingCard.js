@@ -54,14 +54,14 @@ const ShopppingCard = ({ popularProducts }) => {
             <div className="card1" key={data.id}>
               <img src={data.src} alt={data.title} className="card-image1" />
               <div className="card-subcontainer">
+                <span className="card-brandname">Allen Solly</span>
                 <span className="cardby-name1">{data.title}</span>
-                <span className="card-description">{data.description.slice(13, 36)} </span>
                 <span className="card-price">{`${"₹" + "117" + "." + randomNumber + index}`}</span>
-                <span>Upto 40% offer</span>
+                <span >upto 40% offer</span>
               </div>
             </div>
           ))}
-        </Slider>
+        </Slider> 
         <div className="card-button-container">
           <Link to="/showmoreproducts" className="card-button">
             Show more

@@ -1,58 +1,94 @@
-  import React, { useContext, useEffect, useState } from "react";
-  import "../../styles/viewproducts.css";
-  import { MDBIcon } from "mdb-react-ui-kit";
-  import Navbar from "../../components/navbar2";
-  import { useParams } from "react-router-dom";
-  import "../../styles/Style.css";
-  import Footer from "../../components/Footer";
-  import { userDataContext } from "../../context/userDataContext";
-  import { useNavigate } from "react-router-dom";
-  import { Axios } from "../../App";
+import React, { useContext, useEffect, useState } from "react";
+import "../../styles/viewproducts.css";
+import { MDBIcon } from "mdb-react-ui-kit";
+import Navbar from "../../components/navbar";
+import { useParams } from "react-router-dom";
+import "../../styles/Style.css";
+import Footer from "../../components/Footer";
+import { userDataContext } from "../../context/userDataContext";
+import { useNavigate } from "react-router-dom";
+import { CiShoppingTag } from "react-icons/ci";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-  const ViewProduct = () => {
-    const { isAuthenticated, userId, orders, setOrders } = useContext(userDataContext);
-    const { id } = useParams();
-    const navigate = useNavigate();
+import { Axios } from "../../App";
 
-    const [Product, setProduct] = useState({});
+const ViewProduct = () => {
+  const { isAuthenticated, userId, orders, setOrders } = useContext(userDataContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await Axios.get(`/api/user/products/${id}`);
-          const viewProduct = response.data.data;
-          setProduct(viewProduct);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-      fetchData();
-    }, [id]);
+  const [Product, setProduct] = useState({});
+  console.log("Product", Product);
 
-    const addToCart = async (newItems, e) => {
-      e.preventDefault();
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const userPayload = userId;
-        console.log("user");
-        const productPayload = { id: newItems };
-        await Axios.post(`/api/user/${userPayload}/cart`, productPayload);
-        const response = await Axios.get(`/api/user/${userPayload}/cart`);
-        const mapData = response.data.data.cart;
-        setOrders(mapData);
-        alert("Item added to cart successfully");
+        const response = await Axios.get(`/api/user/products/${id}`);
+        const viewProduct = response.data.data;
+        setProduct(viewProduct);
       } catch (error) {
-        console.error("Error adding item to cart:", error);
+        console.error("Error fetching data:", error);
       }
     };
+    fetchData();
+  }, [id]);
 
-    return (
-      <div>
-        <Navbar />
-        <div className="product-container">
-          <div className="product-image">
-            <img src={Product.src} alt="Product" />
+  const addToCart = async (newItems, e) => {
+    e.preventDefault();
+    try {
+      const userPayload = userId;
+      console.log("user");
+      const productPayload = { id: newItems };
+      await Axios.post(`/api/user/${userPayload}/cart`, productPayload);
+      const response = await Axios.get(`/api/user/${userPayload}/cart`);
+      const mapData = response.data.data.cart;
+      setOrders(mapData);
+      alert("Item added to cart successfully");
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
+  };
+
+  return (
+    <div>
+      {/* <Navbar /> */}
+      <div className="product-container">
+        <div className="product-left-container">
+          <div className="product-left-inner-container">
+            <div className="product-image-container">
+              <img src={Product.src} alt="Product" />
+            </div>
+            <div className="product-button-container">
+              <button className="product-addtocart-button">ADD TO CART</button>
+              <button className="product-buynow-button">BUY NOW</button>
+            </div>
           </div>
-          <div className="product-details d-flex justify-content-center align-items-start flex-column vh-100">
+        </div>
+        <div className="product-right-container">
+          <div className="product-details-container">
+            <h1 className="product-brand-text">{Product.brand}</h1>
+            <h1 className="product-heading-text">{Product.title}</h1>
+            <h1 className="product-price-text">{Product.price}</h1>
+            <h1 className="product-description-text">{Product.description}</h1>
+            <p>
+              <CiShoppingTag className="product-tag" />
+              <strong>Bank Offer</strong> Get ₹50 instant discount on first Flipkart UPI txn on order of ₹200 and aboveT&C
+            </p>
+            <p>
+              <CiShoppingTag className="product-tag" />
+              <strong>Bank Offer</strong> 5% Cashback on Flipkart Axis Bank CardT&C
+            </p>
+            <p>
+              <CiShoppingTag className="product-tag" />
+              <strong>Bank Offer</strong> ₹1000 Off On HDFC Credit Card Non EMI Transactions.T&C
+            </p>
+            <p>
+              <CiShoppingTag className="product-tag" />
+              <strong>Special Price</strong> Get extra ₹5500 off (price inclusive of cashback/coupon)T&C
+            </p>
+          </div>
+        </div>
+        {/* <div className="product-details d-flex justify-content-center align-items-start flex-column vh-100">
             <h1 className="product-title">{Product.title}</h1>
             <p className="product-description">{Product.description}</p>
             <p className="product-price">₹ {Product.price}</p>
@@ -99,11 +135,11 @@
                 Buy now
               </button>
             </div>
-          </div>
-        </div>
-        <Footer />
+          </div> */}
       </div>
-    );
-  };
+      <Footer />
+    </div>
+  );
+};
 
-  export default ViewProduct;
+export default ViewProduct;
