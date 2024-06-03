@@ -12,7 +12,7 @@ import {
   MDBTypography,
   MDBCardText,
 } from "mdb-react-ui-kit";
-import Navbar from "../../components/navbar2";
+import Navbar from "../../components/navbar";
 import Footer from "../../components/Footer";
 import { userDataContext } from "../../context/userDataContext";
 import { Link } from "react-router-dom";

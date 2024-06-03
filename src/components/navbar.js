@@ -10,10 +10,11 @@ import { userDataContext } from "../context/userDataContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ChangeUserLoginBgColor } from "../common functions/loginUserBgChange";
+import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated, userName, userLogout, userLogin, category } = useContext(userDataContext);
+  const { isAuthenticated, setIsAuthenticated, userName, userLogout, userLogin, category,orders ,setOrders,userId,products} = useContext(userDataContext);
   const userLetter = userName?.slice(0, 1);
   const loginUserName = localStorage.getItem("username");
   const loginUserBgColor = ChangeUserLoginBgColor(loginUserName);
@@ -28,9 +29,28 @@ const Navbar = () => {
       setPrevScrollPos(currentScrollPos);
     };
 
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, visible]);
+
+  useEffect(() => {
+    const userCartItems = async () => {
+      if (isAuthenticated) {
+        try {
+          const userID = userId;
+          console.log("userId", userId);
+          const response = await axios.get(`http://localhost:8000/api/user/${userID}/cart`);
+          const mapData = response.data.data.cart;
+          setOrders(mapData);
+          console.log("products", products);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    userCartItems();
+  }, [isAuthenticated, userId, setOrders]);
 
   return (
     <div className="navbar-main-div">
@@ -63,9 +83,9 @@ const Navbar = () => {
 
             <div>
               <div className="notification-round">
-                <p className="nav-notification-icon-number">13</p>
+                <p className="nav-notification-icon-number">{orders.length}</p>
               </div>
-              <BsCart className="ShoppingCartIcon" />
+              <BsCart className="ShoppingCartIcon" onClick={()=>navigate('/cartitems')} />
             </div>
 
             <div>

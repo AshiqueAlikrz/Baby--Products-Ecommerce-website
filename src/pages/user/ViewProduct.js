@@ -51,7 +51,7 @@ const ViewProduct = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="product-container">
         <div className="product-left-container">
           <div className="product-left-inner-container">
@@ -59,16 +59,47 @@ const ViewProduct = () => {
               <img src={Product.src} alt="Product" />
             </div>
             <div className="product-button-container">
-              <button className="product-addtocart-button">ADD TO CART</button>
-              <button className="product-buynow-button">BUY NOW</button>
+              <button
+                className="product-addtocart-button"
+                onClick={(e) => {
+                  if (isAuthenticated) {
+                    addToCart(Product._id, e);
+                  } else {
+                    alert("Sign up for your account");
+                  }
+                }}
+              >
+                ADD TO CART
+              </button>
+              <button
+                className="product-buynow-button"
+                onClick={() => {
+                  if (isAuthenticated) {
+                    navigate("/payment");
+                  } else {
+                    alert("Sign up for your account");
+                  }
+                }}
+              >
+                BUY NOW
+              </button>
             </div>
           </div>
         </div>
         <div className="product-right-container">
           <div className="product-details-container">
             <h1 className="product-brand-text">{Product.brand}</h1>
-            <h1 className="product-heading-text">{Product.title}</h1>
-            <h1 className="product-price-text">{Product.price}</h1>
+            <h1 className="product-heading-text">Birkenstock</h1>
+            <div className="product-price-container">
+              <h1 className="product-price-text">{Product.price}</h1>
+              {/* <div className=""> */}
+
+              <h1 className="product-del-text">
+                <del>555</del>
+              </h1>
+                <h1 className="product-offer-text">30% off</h1>
+              {/* </div> */}
+            </div>
             <h1 className="product-description-text">{Product.description}</h1>
             <p>
               <CiShoppingTag className="product-tag" />
@@ -88,6 +119,7 @@ const ViewProduct = () => {
             </p>
           </div>
         </div>
+
         {/* <div className="product-details d-flex justify-content-center align-items-start flex-column vh-100">
             <h1 className="product-title">{Product.title}</h1>
             <p className="product-description">{Product.description}</p>
@@ -99,7 +131,13 @@ const ViewProduct = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     if (isAuthenticated) {
-                      navigate("/cartItems");
+                      navigate("/cartItems"); onClick={(e) => {
+                    if (isAuthenticated) {
+                      addToCart(Product._id, e);
+                    } else {
+                      alert("Sign up for your account");
+                    }
+                  }}
                     }
                   }}
                 >
@@ -109,13 +147,7 @@ const ViewProduct = () => {
               ) : (
                 <button
                   className="add-to-cart"
-                  onClick={(e) => {
-                    if (isAuthenticated) {
-                      addToCart(Product._id, e);
-                    } else {
-                      alert("Sign up for your account");
-                    }
-                  }}
+                 
                 >
                   <MDBIcon fas icon="shopping-cart" className="p-2" />
                   Add to Cart
