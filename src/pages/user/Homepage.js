@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../styles/Style.css";
 import Carousel from "react-bootstrap/Carousel";
 // import Navbar from "../../components/navbar";
@@ -10,6 +10,10 @@ import OurBrands from "../../components/ourBrands";
 import OurServices from "../../components/ourServices";
 
 const Homepage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="nav-first">

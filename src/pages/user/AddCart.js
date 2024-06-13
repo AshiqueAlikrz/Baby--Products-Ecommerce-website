@@ -1,17 +1,5 @@
 import React, { useContext } from "react";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBRow,
-  MDBTypography,
-  MDBCardText,
-} from "mdb-react-ui-kit";
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBContainer, MDBIcon, MDBInput, MDBRow, MDBTypography, MDBCardText } from "mdb-react-ui-kit";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/Footer";
 import { userDataContext } from "../../context/userDataContext";
@@ -20,8 +8,7 @@ import { useEffect } from "react";
 import { Axios } from "../../App";
 
 const AddCart = () => {
-  const { setOrders, orders, LoginUser,userId } = useContext(userDataContext);
-
+  const { setOrders, orders, LoginUser, userId } = useContext(userDataContext);
 
   useEffect(() => {
     const userCartItems = async () => {
@@ -62,13 +49,11 @@ const AddCart = () => {
   }
 
   const BuyClick = async () => {
-    const userID =userId;
+    const userID = userId;
     const response = await Axios.post(`/api/user/${userID}/payment`);
     window.open(response.data.url);
   };
 
- 
-  
   return (
     <div>
       <Navbar />
@@ -140,8 +125,8 @@ const AddCart = () => {
                         </div>
                       </div>
                     </MDBCol>
-                    <MDBCol lg="4" className="bg-dark">
-                      <div className="p-5 bg-dark">
+                    <MDBCol lg="4" className="bg-white">
+                      <div className="p-5 bg-light">
                         <MDBTypography tag="h3" className="fw-bold mb-5 mt-2 pt-1 text-white">
                           Summary
                         </MDBTypography>
@@ -150,14 +135,42 @@ const AddCart = () => {
 
                         <div className="d-flex justify-content-between mb-4"></div>
 
-                        <div className="d-flex justify-content-between mb-5">
-                          <MDBTypography tag="h5" className="text-uppercase text-white">
+                        <div className="d-flex justify-content-between flex-column mb-5">
+                          <div className="d-flex justify-content-between">
+                            <MDBTypography  className=" text-dark">
+                              Delivery Charges
+                            </MDBTypography>
+                            <MDBTypography  className="text-dark">
+                              ₹40
+                            </MDBTypography>
+                          </div>
+
+                          <div className="d-flex justify-content-between">
+                            <MDBTypography  className=" text-dark">
+                              Discount{" "}
+                            </MDBTypography>
+                            <MDBTypography  className="text-success">
+                            ₹400
+                            </MDBTypography>
+                          </div>
+
+                          <div className="d-flex justify-content-between">
+                            <MDBTypography tag="h5" className=" text-dark">
+                              Total Amount
+                            </MDBTypography>
+                            <MDBTypography tag="h5" className="text-dark">
+                              ₹ {totalPrice}
+                            </MDBTypography>
+                          </div>
+                        </div>
+                        {/* <div className="d-flex justify-content-between mb-5">
+                          <MDBTypography tag="h5" className="text-uppercase text-dark">
                             Total price
                           </MDBTypography>
-                          <MDBTypography tag="h5" className="text-white">
+                          <MDBTypography tag="h5" className="text-dark">
                             ₹ {totalPrice}
                           </MDBTypography>
-                        </div>
+                        </div> */}
 
                         <MDBBtn color="warning" block size="lg" onClick={() => BuyClick()}>
                           BUY

@@ -3,7 +3,7 @@ import "../../styles/viewproducts.css";
 import { MDBIcon } from "mdb-react-ui-kit";
 import Navbar from "../../components/navbar";
 import { useParams } from "react-router-dom";
-import "../../styles/Style.css";
+// import "../../styles/Style.css";
 import Footer from "../../components/Footer";
 import { userDataContext } from "../../context/userDataContext";
 import { useNavigate } from "react-router-dom";
@@ -15,15 +15,18 @@ import { Axios } from "../../App";
 const ViewProduct = () => {
   const { isAuthenticated, userId, orders, setOrders } = useContext(userDataContext);
   const { id } = useParams();
+  const productId = id;
+  console.log("productId", productId);
   const navigate = useNavigate();
 
   const [Product, setProduct] = useState({});
-  console.log("Product", Product);
 
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Axios.get(`/api/user/products/${id}`);
+        window.scrollTo(0, 0);
+        const response = await Axios.get(`/api/user/products/${productId}`);
         const viewProduct = response.data.data;
         setProduct(viewProduct);
       } catch (error) {
@@ -31,7 +34,7 @@ const ViewProduct = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [productId]);
 
   const addToCart = async (newItems, e) => {
     e.preventDefault();
@@ -97,7 +100,7 @@ const ViewProduct = () => {
               <h1 className="product-del-text">
                 <del>555</del>
               </h1>
-                <h1 className="product-offer-text">30% off</h1>
+              <h1 className="product-offer-text">30% off</h1>
               {/* </div> */}
             </div>
             <h1 className="product-description-text">{Product.description}</h1>

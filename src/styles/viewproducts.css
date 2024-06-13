@@ -18,13 +18,13 @@
   /* flex-wrap: wrap; */
   /* background-color: #666; */
   width: 40%;
-  height: auto;
+  height: 70vh;
 }
 .product-right-container {
   display: flex;
   align-items: center;
   width: 60%;
-  height: auto;
+  height: 70vh;
   /* background-color: #210947; */
 }
 
