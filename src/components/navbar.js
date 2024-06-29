@@ -14,9 +14,8 @@ import axios from "axios";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated, userName, userLogout, userLogin, category,orders ,setOrders,userId,products} = useContext(userDataContext);
-  const userLetter = userName?.slice(0, 1);
-  const loginUserName = localStorage.getItem("username");
+  const { isAuthenticated, setIsAuthenticated,loginUserName, userName, userLogout, userLogin, category, orders, setOrders, userId, products } = useContext(userDataContext);
+  const userLetter = userName?.slice(0, 1); 
   const loginUserBgColor = ChangeUserLoginBgColor(loginUserName);
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -28,7 +27,6 @@ const Navbar = () => {
       setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 100);
       setPrevScrollPos(currentScrollPos);
     };
-
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -85,7 +83,7 @@ const Navbar = () => {
               <div className="notification-round">
                 <p className="nav-notification-icon-number">{orders.length}</p>
               </div>
-              <BsCart className="ShoppingCartIcon" onClick={()=>navigate('/cartitems')} />
+              <BsCart className="ShoppingCartIcon" onClick={() => navigate("/cartitems")} />
             </div>
 
             <div>

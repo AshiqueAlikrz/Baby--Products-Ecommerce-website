@@ -2,6 +2,7 @@ let bgColor = ["#28423b", "#115917", "#330536", "#8f1f09", "#594d00", "#594d00",
 
 export function ChangeUserLoginBgColor(loginUserName) {
   const lastDigit = loginUserName?.slice(-1);
+  console.log("lastDigit",lastDigit);
   const color = bgColor[lastDigit];
   return color;
 }

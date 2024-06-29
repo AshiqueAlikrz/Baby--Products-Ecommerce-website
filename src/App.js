@@ -7,7 +7,8 @@ import ContactUs from "./pages/user/Contact";
 import About from "./pages/user/about";
 import AddCart from "./pages/user/AddCart";
 import ViewProduct from "./pages/user/ViewProduct";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer"
+import WishList from "./pages/user/WishList";
 import { useState } from "react";
 import { userDataContext } from "./context/userDataContext";
 // import { productsDeatils } from "./LoginAndRegisterAccount/Products";
@@ -32,6 +33,9 @@ export const Axios = axios.create({
   },
 });
 
+const loginUserName = localStorage.getItem("username");
+
+
 function App() {
   // const [cartItems, setCartItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,7 +46,7 @@ function App() {
   const [orders, setOrders] = useState([]);
   const userId = localStorage.getItem("id");
   const userName = localStorage.getItem("name");
-
+console.log("appjs");
   // admin all users
 
   useEffect(() => {
@@ -128,6 +132,7 @@ function App() {
           userLogout,
           userLogin,
           category,
+          loginUserName
         }}
       >
         <Routes>
@@ -150,6 +155,7 @@ function App() {
           <Route path="/info/:id/:name/:email" element={<Sidebar />} />
           <Route path="/payment/success" element={<SuccessAlert />} />
           <Route path="/showmoreproducts" element={<ShowMoreProducts />} />
+          <Route path="/wishlist" element={<WishList />} />
         </Routes>
       </userDataContext.Provider>
     </div>

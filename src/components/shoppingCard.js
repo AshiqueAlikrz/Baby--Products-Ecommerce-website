@@ -5,7 +5,6 @@ import "../styles/popularItems.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
@@ -49,30 +48,41 @@ const ShopppingCard = ({ popularProducts }) => {
       },
     ],
   };
+
+  const handleLikeClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <>
       <div className="newproducts-container1">
         <Slider {...settings}>
           {popularProducts.map((data, index) => (
             <div className="card1" key={data.id} onClick={() => navigate(`/productdetails/${data._id}`)}>
+              <label class="ui-like" onClick={handleLikeClick}>
+                <input type="checkbox" />
+                <div class="like">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="">
+                    <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                    <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path>
+                    </g>
+                  </svg>
+                </div>
+              </label>
               <img src={data.src} alt={data.title} className="card-image1" />
               <div className="card-subcontainer">
                 <span className="card-brandname">Allen Solly</span>
                 <span className="cardby-name1">{data.title}</span>
                 <span className="card-price">{`${"₹" + "117" + "." + randomNumber + index}`}</span>
-                <span>upto 40% offer</span>
-                {/* <label class="container">
-                  <input type="checkbox" />
-                  <svg id="Layer_1" version="1.0" viewBox="0 0 24 24" xmlXspace="preserve" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                    <path d="M16.4,4C14.6,4,13,4.9,12,6.3C11,4.9,9.4,4,7.6,4C4.5,4,2,6.5,2,9.6C2,14,12,22,12,22s10-8,10-12.4C22,6.5,19.5,4,16.4,4z"></path>
-                  </svg>
-                </label> */}
+                <span>upto 40% offer</span>{" "}
               </div>
             </div>
           ))}
         </Slider>
         <div className="card-button-container">
-          <button className="card-button" onClick={()=>navigate("/showmoreproducts")}>
+          <button className="card-button" onClick={() => navigate("/showmoreproducts")}>
             Show more
           </button>
         </div>
